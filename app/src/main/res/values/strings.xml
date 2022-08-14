@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
+
+    //titles
+    <string name="title_tasks">Задачи</string>
+    <string name="title_teams">Команды</string>
 </resources>
