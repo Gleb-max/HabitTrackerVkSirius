@@ -1,4 +1,4 @@
-package com.habit.tracker.presentation.map
+package com.habit.tracker.presentation.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
