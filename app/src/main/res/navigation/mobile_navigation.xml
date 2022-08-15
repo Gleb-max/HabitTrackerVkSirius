@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_map"
-        android:name="com.habit.tracker.presentation.map.MapFragment"
+        android:name="com.habit.tracker.presentation.view.MapFragment"
         android:label="@string/title_map"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.habit.tracker.presentation.profile.ProfileFragment"
+        android:name="com.habit.tracker.presentation.view.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
 
