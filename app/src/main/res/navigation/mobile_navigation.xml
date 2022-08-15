@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_tasks">
+    app:startDestination="@+id/navigation_map">
 
     <fragment
-        android:id="@+id/navigation_tasks"
-        android:name="com.habit.tracker.presentation.task.TaskListFragment"
-        android:label="@string/title_tasks"
-        tools:layout="@layout/fragment_task_list" />
+        android:id="@+id/navigation_map"
+        android:name="com.habit.tracker.presentation.map.MapFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_map" />
 
     <fragment
-        android:id="@+id/navigation_teams"
-        android:name="com.habit.tracker.presentation.team.TeamListFragment"
-        android:label="@string/title_teams"
-        tools:layout="@layout/fragment_team_list" />
+        android:id="@+id/navigation_profile"
+        android:name="com.habit.tracker.presentation.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 
 </navigation>

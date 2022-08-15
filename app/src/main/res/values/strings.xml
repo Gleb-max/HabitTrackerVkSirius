@@ -2,6 +2,12 @@
     <string name="app_name">Habit Tracker</string>
 
     //titles
-    <string name="title_tasks">Задачи</string>
-    <string name="title_teams">Команды</string>
+    <string name="title_map">Карты</string>
+    <string name="title_profile">Профиль</string>
+
+    //content description
+    <string name="search_description">Поиск</string>
+
+    //tokens
+    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiZ2xlYi1tYXgiLCJhIjoiY2w1bTM0b2xjMDVmMjNicDhncjJwbGo3dSJ9.e196gGMK3Q57AXei-2YVBA</string>
 </resources>
