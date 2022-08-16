@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
+
     <string name="statements">Заявления</string>
     <string name="about_me">О себе:</string>
+
+    <string name="statements">Заведение</string>
+
+    //titles
+    <string name="title_map">Карты</string>
+    <string name="title_profile">Профиль</string>
+
+    //content description
+    <string name="search_description">Поиск</string>
+    <string name="add_description">Создать</string>
+
+    //tokens
+    <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiZ2xlYi1tYXgiLCJhIjoiY2w1bTM0b2xjMDVmMjNicDhncjJwbGo3dSJ9.e196gGMK3Q57AXei-2YVBA</string>
+
 </resources>

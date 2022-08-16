@@ -15,6 +15,8 @@ android {
         versionCode 1
         versionName "1.0"
 
+        multiDexEnabled true
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -50,7 +52,7 @@ dependencies {
     //constraint layout
     implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
 
-// Coroutines
+    // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
@@ -74,6 +76,23 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // view pager
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
+    // maps
+    implementation 'com.mapbox.maps:android:10.6.1'
+
+    // glide
+    implementation 'com.github.bumptech.glide:glide:4.13.2'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
+
+    //multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.35.1'
+    kapt 'com.google.dagger:dagger-compiler:2.35.1'
 
     //tests
     testImplementation "junit:junit:4.13.2"
