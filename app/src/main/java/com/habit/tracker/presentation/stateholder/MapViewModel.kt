@@ -5,12 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.habit.tracker.core.BaseViewModel
 import com.habit.tracker.domain.entity.Organization
-import com.habit.tracker.domain.usecase.GetOrganizationsUseCase
+import com.habit.tracker.domain.usecase.GetOrganizationListUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(
-    getOrganizationsUseCase: GetOrganizationsUseCase
+    getOrganizationListUseCase: GetOrganizationListUseCase
 ) : BaseViewModel() {
 
     private val _organizations = MutableLiveData(listOf<Organization>())
@@ -18,7 +18,7 @@ class MapViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _organizations.value = getOrganizationsUseCase()
+            _organizations.value = getOrganizationListUseCase()
         }
     }
 }

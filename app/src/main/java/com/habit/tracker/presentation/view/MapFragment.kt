@@ -2,7 +2,6 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -126,10 +125,7 @@ class MapFragment : Fragment() {
                     val pointAnnotationManager =
                         annotationApi.createPointAnnotationManager(binding.mapView)
                     pointAnnotationManager.addClickListener(OnPointAnnotationClickListener {
-                        Log.e(
-                            "organ",
-                            organization.toString()
-                        )
+                        openOrganizationDetails(organization)
                         true
                     })
                     val pointAnnotationOptions: PointAnnotationOptions =
@@ -139,6 +135,15 @@ class MapFragment : Fragment() {
                     pointAnnotationManager.create(pointAnnotationOptions)
                 }
         }
+    }
+
+    private fun openOrganizationDetails(organization: Organization) {
+        val organizationBottomSheetFragment =
+            OrganizationBottomSheetFragment.newInstance(organization.id)
+        organizationBottomSheetFragment.show(
+            requireActivity().supportFragmentManager,
+            organizationBottomSheetFragment.tag
+        )
     }
 
     private fun setupGesturesListener() {
