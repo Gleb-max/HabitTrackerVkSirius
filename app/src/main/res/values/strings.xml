@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
     <string name="statements">Заявления</string>
+    <string name="about_me">О себе:</string>
 </resources>
