@@ -97,8 +97,8 @@
             android:layout_width="0dp"
             android:layout_height="44dp"
             android:layout_marginTop="20dp"
-            android:hint="   Заголовок"
             android:background="@drawable/edit_text"
+            android:hint="   Заголовок"
             app:layout_constraintEnd_toEndOf="@id/SViewLoadGallery4"
             app:layout_constraintStart_toStartOf="@id/SViewLoadGallery2"
             app:layout_constraintTop_toBottomOf="@id/SViewLoadGallery3">
@@ -108,12 +108,12 @@
         <EditText
             android:id="@+id/ETdescription"
             android:layout_width="0dp"
-            android:hint="                              Описание"
             android:layout_height="140dp"
             android:layout_marginTop="20dp"
+            android:background="@drawable/edit_text"
+            android:hint="                              Описание"
             android:inputType="textMultiLine"
             android:lines="10"
-            android:background="@drawable/edit_text"
             app:layout_constraintEnd_toEndOf="@id/ETheading"
             app:layout_constraintStart_toStartOf="@id/ETheading"
             app:layout_constraintTop_toBottomOf="@id/ETheading">
