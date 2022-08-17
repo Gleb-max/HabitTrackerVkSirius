@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBottomSheetBinding
+import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
@@ -32,9 +33,14 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var requestListAdapter: RequestListAdapter
 
+    private lateinit var onRequestListActionsListener: OnRequestListActionsListener
+
     override fun onAttach(context: Context) {
         component.inject(this)
         super.onAttach(context)
+
+        if (context is OnRequestListActionsListener) onRequestListActionsListener = context
+        else throw RuntimeException("Activity must implement OnRequestListActionsListener")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,10 +72,20 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
         setupRecyclerView()
         observeViewModel()
         viewModel.loadOrganizationData(organizationId)
+
+        binding.fabAddRequest.setOnClickListener {
+            onRequestListActionsListener.onAddNewClick()
+            dismissAllowingStateLoss()
+        }
     }
 
     private fun setupRecyclerView() {
-        requestListAdapter = RequestListAdapter()
+        requestListAdapter = RequestListAdapter().apply {
+            onRequestItemClickListener = { request ->
+                onRequestListActionsListener.onRequestItemClick(request)
+                dismissAllowingStateLoss()
+            }
+        }
         with(binding.rvRequestList) {
             adapter = requestListAdapter
         }
@@ -85,6 +101,13 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
         viewModel.requests.observe(viewLifecycleOwner) {
             requestListAdapter.submitList(it)
         }
+    }
+
+    interface OnRequestListActionsListener {
+
+        fun onRequestItemClick(request: Request)
+
+        fun onAddNewClick()
     }
 
     companion object {

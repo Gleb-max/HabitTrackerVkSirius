@@ -99,7 +99,6 @@ class MapFragment : Fragment() {
 
     private fun onMapReady() {
         binding.mapView.apply {
-
             getMapboxMap().setCamera(
                 CameraOptions.Builder()
                     .zoom(14.0)
@@ -141,7 +140,7 @@ class MapFragment : Fragment() {
         val organizationBottomSheetFragment =
             OrganizationBottomSheetFragment.newInstance(organization.id)
         organizationBottomSheetFragment.show(
-            requireActivity().supportFragmentManager,
+            parentFragmentManager,
             organizationBottomSheetFragment.tag
         )
     }

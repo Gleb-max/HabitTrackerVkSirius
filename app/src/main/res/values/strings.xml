@@ -4,9 +4,29 @@
     <string name="statements">Заведение</string>
     <string name="about_me">О себе:</string>
 
+    //labels
+    <string name="label_splash">Старт</string>
+    <string name="label_map">Карты</string>
+    <string name="label_profile">Профиль</string>
+    <string name="label_create_request">Создание заявки</string>
+    <string name="label_request_details">Подробности заявки</string>
+    <string name="label_registration">Регистрация</string>
+    <string name="label_enter_phone">Ввод телефона</string>
+    <string name="label_enter_code">Ввод кода</string>
+
     //titles
-    <string name="title_map">Карты</string>
-    <string name="title_profile">Профиль</string>
+    <string name="title_enter_phone">Какой у вас\nномер\nтелефона?</string>
+    <string name="progress_text">с номером %1$s%</string>
+    <string name="are_you_user">Вы уже с нами?</string>
+    <string name="login">Войти</string>
+
+    //hints
+    <string name="phone_number_hint">НОМЕР ТЕЛЕФОНА</string>
+    <string name="name_hint">ИМЯ И ФАМИЛИЯ</string>
+
+    //buttons
+    <string name="get_code">Получить код</string>
+    <string name="register">Зарегистрироваться</string>
 
     //content description
     <string name="search_description">Поиск</string>
@@ -14,6 +34,15 @@
 
     //tokens
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiZ2xlYi1tYXgiLCJhIjoiY2w1bTM0b2xjMDVmMjNicDhncjJwbGo3dSJ9.e196gGMK3Q57AXei-2YVBA</string>
+
     <string name="what_search">Что ищем?</string>
+
+    <string name="change_number">Изменить</string>
+    <string name="title_get_photo_ar">AR-съемка</string>
+    <string name="title_get_photo_camera">Сделать фото</string>
+    <string name="title_get_photo_gallery">Выбрать из галереи</string>
+    <string name="create_request">Создать заявку</string>
+    <string name="create_request_button">Создать</string>
+
 
 </resources>
