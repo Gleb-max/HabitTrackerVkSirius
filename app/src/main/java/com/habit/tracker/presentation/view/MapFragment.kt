@@ -99,7 +99,6 @@ class MapFragment : Fragment() {
 
     private fun onMapReady() {
         binding.mapView.apply {
-
             getMapboxMap().setCamera(
                 CameraOptions.Builder()
                     .zoom(14.0)

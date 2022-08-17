@@ -1,10 +1,7 @@
-package com.habit.tracker
+package com.habit.tracker.presentation.view
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
@@ -13,15 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.imageview.ShapeableImageView
-import java.io.File
-import java.util.jar.Manifest
+import com.habit.tracker.R
+import com.habit.tracker.databinding.FragmentCreateRequestBinding
 
-class CreateRequestFragment: Fragment(R.layout.request) {
+class CreateRequestFragment : Fragment() {
+
+    private var _binding: FragmentCreateRequestBinding? = null
+    private val binding: FragmentCreateRequestBinding
+        get() = _binding ?: throw RuntimeException("FragmentCreateRequestBinding == null")
 
     lateinit var openBottomSheet: ShapeableImageView
     lateinit var openBottomSheet2: ShapeableImageView
@@ -32,8 +31,9 @@ class CreateRequestFragment: Fragment(R.layout.request) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
+    ): View {
+        _binding = FragmentCreateRequestBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
