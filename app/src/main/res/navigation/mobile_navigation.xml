@@ -18,18 +18,6 @@
         app:popUpTo="@id/mobile_navigation" />
 
     <fragment
-        android:id="@+id/navigation_map"
-        android:name="com.habit.tracker.presentation.view.MapFragment"
-        android:label="@string/label_map"
-        tools:layout="@layout/fragment_map" />
-
-    <fragment
-        android:id="@+id/navigation_profile"
-        android:name="com.habit.tracker.presentation.view.ProfileFragment"
-        android:label="@string/label_profile"
-        tools:layout="@layout/fragment_profile" />
-
-    <fragment
         android:id="@+id/navigation_splash"
         android:name="com.habit.tracker.presentation.view.SplashFragment"
         android:label="@string/label_splash"
@@ -63,5 +51,29 @@
             android:id="@+id/action_navigation_registration_to_navigation_enter_code"
             app:destination="@id/navigation_enter_code" />
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.habit.tracker.presentation.view.MapFragment"
+        android:label="@string/label_map"
+        tools:layout="@layout/fragment_map" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.habit.tracker.presentation.view.ProfileFragment"
+        android:label="@string/label_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_create_request"
+        android:name="com.habit.tracker.CreateRequestFragment"
+        android:label="@string/label_create_request"
+        tools:layout="@layout/request" />
+
+    <fragment
+        android:id="@+id/navigation_request_details"
+        android:name="com.habit.tracker.presentation.view.RequestDetailsFragment"
+        android:label="@string/label_request_details"
+        tools:layout="@layout/wath" />
 
 </navigation>

@@ -1,13 +1,17 @@
 package com.habit.tracker.presentation
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.habit.tracker.R
 import com.habit.tracker.databinding.ActivityMainBinding
+import com.habit.tracker.domain.entity.Request
+import com.habit.tracker.presentation.view.OrganizationBottomSheetFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+    OrganizationBottomSheetFragment.OnRequestListActionsListener {
 
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
 
@@ -21,5 +25,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.navView.setupWithNavController(navController)
+        setupNavController()
+    }
+
+    private fun setupNavController() {
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_map, R.id.navigation_profile -> binding.navView.visibility =
+                    View.VISIBLE
+                else -> binding.navView.visibility = View.GONE
+            }
+        }
+    }
+
+    override fun onRequestItemClick(request: Request) {
+        navController.navigate(R.id.navigation_request_details)
+    }
+
+    override fun onAddNewClick() {
+        navController.navigate(R.id.navigation_create_request)
     }
 }
