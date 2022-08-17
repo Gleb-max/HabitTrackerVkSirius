@@ -5,16 +5,63 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_map">
 
+    <action
+        android:id="@+id/action_navigation_main"
+        app:destination="@id/navigation_map"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mobile_navigation" />
+
+    <action
+        android:id="@+id/action_navigation_auth"
+        app:destination="@id/navigation_enter_phone"
+        app:launchSingleTop="true"
+        app:popUpTo="@id/mobile_navigation" />
+
     <fragment
         android:id="@+id/navigation_map"
         android:name="com.habit.tracker.presentation.view.MapFragment"
-        android:label="@string/title_map"
+        android:label="@string/label_map"
         tools:layout="@layout/fragment_map" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.habit.tracker.presentation.view.ProfileFragment"
-        android:label="@string/title_profile"
+        android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/navigation_splash"
+        android:name="com.habit.tracker.presentation.view.SplashFragment"
+        android:label="@string/label_splash"
+        tools:layout="@layout/fragment_splash" />
+
+    <fragment
+        android:id="@+id/navigation_enter_phone"
+        android:name="com.habit.tracker.presentation.view.EnterPhoneFragment"
+        android:label="@string/label_enter_phone"
+        tools:layout="@layout/fragment_enter_phone">
+        <action
+            android:id="@+id/action_navigation_enter_phone_to_navigation_enter_code"
+            app:destination="@id/navigation_enter_code" />
+        <action
+            android:id="@+id/action_navigation_enter_phone_to_navigation_registration"
+            app:destination="@id/navigation_registration" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_enter_code"
+        android:name="com.habit.tracker.presentation.view."
+        android:label="@string/label_enter_code"
+        tools:layout="@layout/fragment_enter_code" />
+
+    <fragment
+        android:id="@+id/navigation_registration"
+        android:name="com.habit.tracker.presentation.view.RegistrationFragment"
+        android:label="@string/label_registration"
+        tools:layout="@layout/fragment_registration">
+        <action
+            android:id="@+id/action_navigation_registration_to_navigation_enter_code"
+            app:destination="@id/navigation_enter_code" />
+    </fragment>
 
 </navigation>

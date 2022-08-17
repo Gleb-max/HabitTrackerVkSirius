@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="24dp"
+    android:paddingVertical="90dp"
+    android:weightSum="2"
+    tools:context=".presentation.view.RegistrationFragment">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/register_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/label_registration"
+        android:textAlignment="textStart"
+        android:textColor="@color/dark_blue"
+        android:textSize="40sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAlignment="textStart"
+            android:textAllCaps="true"
+            android:textColor="@color/gray"
+            android:textSize="16sp"
+            tools:text="с номером + 7 912 3456789" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_change_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:text="@string/change_number"
+            android:textAlignment="textEnd"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_green"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/full_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="@color/dark_green"
+        android:hint="@string/name_hint"
+        android:inputType="textCapWords"
+        android:lines="1"
+        android:textAllCaps="true"
+        android:textColorHighlight="@color/dark_green"
+        android:textColorHint="@color/gray"
+        android:textSize="15sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="9dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/auth_button_shape"
+        android:clickable="false"
+        android:text="@string/register"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:shapeAppearance="@drawable/auth_button_shape" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/are_you_user"
+            android:textAlignment="textStart"
+            android:textAllCaps="false"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:text="@string/login"
+            android:textAlignment="textEnd"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_green"
+            android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>
