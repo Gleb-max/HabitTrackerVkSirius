@@ -8,6 +8,7 @@ import android.widget.SeekBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.habit.tracker.CreateRequestFragment
 import com.habit.tracker.R
 import com.habit.tracker.databinding.FragmentProfileBinding
 
@@ -27,6 +28,12 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.make.setOnClickListener {
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_profile, CreateRequestFragment())
+            transaction?.disallowAddToBackStack()
+            transaction?.commit()
+        }
     // это BottomSheet, надо прикрутить это к карте
         // и кнопку тоже переопределить
 //        val buttonSheet = binding.buttonSheet
