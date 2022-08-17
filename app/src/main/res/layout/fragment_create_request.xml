@@ -1,100 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollIndicators="none">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="24dp"
+        android:paddingTop="40dp">
 
         <TextView
             android:id="@+id/tvLabelRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="40dp"
-            android:text="Создать заявление"
+            android:text="@string/create_request"
             android:textColor="@color/black"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/SViewLoadGallery"
-            android:layout_width="0dp"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_photo_1"
+            android:layout_width="match_parent"
             android:layout_height="162dp"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="24dp"
-            android:padding="2dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_add_a_photo_24"
-            app:layout_constraintCircleRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:cardBackgroundColor="@color/light_gray"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:cardUseCompatPadding="true"
             app:layout_constraintTop_toBottomOf="@id/tvLabelRequest"
-            app:shapeAppearanceOverlay="@style/shape_round"
-            app:strokeColor="@color/gray"
+            app:strokeColor="@android:color/darker_gray"
             app:strokeWidth="2dp">
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_photo_1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside"
+                app:shapeAppearanceOverlay="@style/shape_round"
+                app:srcCompat="@drawable/ic_add_photo" />
 
-        </com.google.android.material.imageview.ShapeableImageView>
+        </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/SViewLoadGallery2"
-            android:layout_width="93dp"
-            android:layout_height="87dp"
+        <LinearLayout
+            android:id="@+id/ll_bottom_photos"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            android:padding="2dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_add_a_photo_24"
-            app:layout_constraintStart_toStartOf="@id/SViewLoadGallery"
-            app:layout_constraintTop_toBottomOf="@id/SViewLoadGallery"
-            app:shapeAppearanceOverlay="@style/shape_round"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="2dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/card_photo_1">
 
-        </com.google.android.material.imageview.ShapeableImageView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_photo_2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/light_gray"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true"
+                app:strokeColor="@android:color/darker_gray"
+                app:strokeWidth="2dp">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/SViewLoadGallery4"
-            android:layout_width="93dp"
-            android:layout_height="87dp"
-            android:layout_marginTop="20dp"
-            android:padding="2dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_add_a_photo_24"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="@id/SViewLoadGallery"
-            app:layout_constraintTop_toBottomOf="@id/SViewLoadGallery"
-            app:shapeAppearanceOverlay="@style/shape_round"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="2dp">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_photo_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_add_photo"
+                    app:shapeAppearanceOverlay="@style/shape_round" />
 
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.imageview.ShapeableImageView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_photo_3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/light_gray"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true"
+                app:strokeColor="@android:color/darker_gray"
+                app:strokeWidth="2dp">
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/SViewLoadGallery3"
-            android:layout_width="93dp"
-            android:layout_height="87dp"
-            android:layout_marginTop="20dp"
-            android:padding="2dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_baseline_add_a_photo_24"
-            app:cardCornerRadius="10dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/SViewLoadGallery"
-            app:shapeAppearanceOverlay="@style/shape_round"
-            app:strokeColor="@color/gray"
-            app:strokeWidth="2dp">
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_photo_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_add_photo"
+                    app:shapeAppearanceOverlay="@style/shape_round" />
 
+            </com.google.android.material.card.MaterialCardView>
 
-        </com.google.android.material.imageview.ShapeableImageView>
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_photo_4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/light_gray"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardUseCompatPadding="true"
+                app:strokeColor="@android:color/darker_gray"
+                app:strokeWidth="2dp">
 
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_photo_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_add_photo"
+                    app:shapeAppearanceOverlay="@style/shape_round" />
+
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
 
         <EditText
             android:id="@+id/ETheading"
@@ -103,11 +127,9 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/edit_text"
             android:hint="   Заголовок"
-            app:layout_constraintEnd_toEndOf="@id/SViewLoadGallery4"
-            app:layout_constraintStart_toStartOf="@id/SViewLoadGallery2"
-            app:layout_constraintTop_toBottomOf="@id/SViewLoadGallery3">
-
-        </EditText>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_bottom_photos" />
 
         <EditText
             android:id="@+id/ETdescription"
@@ -120,18 +142,17 @@
             android:lines="10"
             app:layout_constraintEnd_toEndOf="@id/ETheading"
             app:layout_constraintStart_toStartOf="@id/ETheading"
-            app:layout_constraintTop_toBottomOf="@id/ETheading">
-
-        </EditText>
+            app:layout_constraintTop_toBottomOf="@id/ETheading" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAction"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="80dp"
             android:backgroundTint="#13A699"
-            android:text="Создать"
+            android:padding="8dp"
+            android:text="@string/create_request_button"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="20sp"
@@ -140,7 +161,4 @@
             app:layout_constraintStart_toStartOf="@id/ETdescription"
             app:layout_constraintTop_toBottomOf="@id/ETdescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </ScrollView>
-
