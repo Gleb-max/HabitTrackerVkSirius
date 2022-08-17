@@ -34,11 +34,15 @@
 
     //tokens
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiZ2xlYi1tYXgiLCJhIjoiY2w1bTM0b2xjMDVmMjNicDhncjJwbGo3dSJ9.e196gGMK3Q57AXei-2YVBA</string>
+
+    <string name="what_search">Что ищем?</string>
+
     <string name="change_number">Изменить</string>
     <string name="title_get_photo_ar">AR-съемка</string>
     <string name="title_get_photo_camera">Сделать фото</string>
     <string name="title_get_photo_gallery">Выбрать из галереи</string>
     <string name="create_request">Создать заявку</string>
     <string name="create_request_button">Создать</string>
+
 
 </resources>
