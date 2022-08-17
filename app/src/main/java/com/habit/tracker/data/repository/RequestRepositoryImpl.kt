@@ -63,27 +63,27 @@ val mockRequest = listOf(
         "Без света никак!",
         "Ночью просто не пройти, ведь ты даже не видишь куда идти. А если выйдет маньяк в бежевом плаще...",
         true,
-        listOf()
+        listOf("https://i.ytimg.com/vi/8-eWve5hL1U/maxresdefault.jpg")
     ),
     Request(
         2,
         "Без света никак!",
         "Ночью просто не пройти, ведь ты даже не видишь куда идти. А если выйдет маньяк в бежевом плаще...",
         true,
-        listOf()
+        listOf("https://i.ytimg.com/vi/8-eWve5hL1U/maxresdefault.jpg")
     ),
     Request(
         3,
         "Без света никак!",
         "Ночью просто не пройти, ведь ты даже не видишь куда идти. А если выйдет маньяк в бежевом плаще...",
         true,
-        listOf()
+        listOf("https://i.ytimg.com/vi/8-eWve5hL1U/maxresdefault.jpg")
     ),
     Request(
         4,
         "Без света никак!",
         "Ночью просто не пройти, ведь ты даже не видишь куда идти. А если выйдет маньяк в бежевом плаще...",
         true,
-        listOf()
+        listOf("https://i.ytimg.com/vi/8-eWve5hL1U/maxresdefault.jpg")
     ),
 )

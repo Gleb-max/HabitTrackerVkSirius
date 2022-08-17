@@ -12,20 +12,24 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:paddingVertical="16dp"
+        android:paddingStart="16dp">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_photo"
             android:layout_width="108dp"
             android:layout_height="74dp"
+            android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCut" />
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:paddingHorizontal="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_photo"
@@ -35,9 +39,9 @@
                 android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
                 android:ellipsize="end"
                 android:fontFamily="@font/abhaya_libre_semibold"
+                android:gravity="top"
                 android:maxLines="2"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/iv_photo"
@@ -56,10 +60,9 @@
                 android:textStyle="italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/iv_photo"
-                tools:text="В этом месте скамейка просто необходима, вечерами даже негде посидеть!" />
+                tools:text="В этом месте скамейка просто необходима, вечерами даже негде посидеть!В этом месте скамейка просто необходима, вечерами даже негде посидеть!В этом месте скамейка просто необходима, вечерами даже негде посидеть!В этом месте скамейка просто необходима, вечерами даже негде посидеть!" />
 
         </LinearLayout>
-
 
         <!--        <ToggleButton-->
         <!--            android:id="@+id/toggleButton"-->
