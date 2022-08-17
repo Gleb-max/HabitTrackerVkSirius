@@ -77,6 +77,10 @@ class MapFragment : Fragment() {
         locationPermissionHelper.checkPermissions {
             onMapReady()
         }
+
+        binding.tilSearch.setEndIconOnClickListener {
+            //todo
+        }
     }
 
     private fun observeViewModel() {
