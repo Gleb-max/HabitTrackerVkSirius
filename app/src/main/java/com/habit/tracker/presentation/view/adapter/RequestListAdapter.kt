@@ -20,11 +20,11 @@ class RequestListAdapter : ListAdapter<Request, RequestItemViewHolder>(RequestIt
     }
 
     override fun onBindViewHolder(holder: RequestItemViewHolder, position: Int) {
-        val todoItem = getItem(position)
-        holder.bind(todoItem)
+        val requestItem = getItem(position)
+        holder.bind(requestItem)
         val binding = holder.binding
         binding.root.setOnClickListener {
-            onRequestItemClickListener?.invoke(todoItem)
+            onRequestItemClickListener?.invoke(requestItem)
         }
     }
 }
