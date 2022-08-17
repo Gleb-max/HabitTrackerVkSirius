@@ -140,7 +140,7 @@ class MapFragment : Fragment() {
         val organizationBottomSheetFragment =
             OrganizationBottomSheetFragment.newInstance(organization.id)
         organizationBottomSheetFragment.show(
-            requireActivity().supportFragmentManager,
+            parentFragmentManager,
             organizationBottomSheetFragment.tag
         )
     }

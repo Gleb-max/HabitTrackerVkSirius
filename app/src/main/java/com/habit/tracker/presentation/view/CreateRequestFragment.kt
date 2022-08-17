@@ -1,19 +1,13 @@
 package com.habit.tracker.presentation.view
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.imageview.ShapeableImageView
-import com.habit.tracker.R
+import androidx.fragment.app.setFragmentResultListener
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.habit.tracker.databinding.FragmentCreateRequestBinding
 
 class CreateRequestFragment : Fragment() {
@@ -22,10 +16,32 @@ class CreateRequestFragment : Fragment() {
     private val binding: FragmentCreateRequestBinding
         get() = _binding ?: throw RuntimeException("FragmentCreateRequestBinding == null")
 
-    lateinit var openBottomSheet: ShapeableImageView
-    lateinit var openBottomSheet2: ShapeableImageView
-    lateinit var openBottomSheet3: ShapeableImageView
-    lateinit var openBottomSheet4: ShapeableImageView
+    //todo хранить во вью модели
+    val photos = mutableListOf("", "", "", "")
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setFragmentResultListener(SelectPhotoBottomSheetFragment.REQUEST_KEY) { requestKey, bundle ->
+            val photoUri = bundle.getString(SelectPhotoBottomSheetFragment.PHOTO_URI_KEY, "")
+            val photoId = bundle.getInt(SelectPhotoBottomSheetFragment.PHOTO_POSITION, 1)
+            if (photoUri.isNotBlank()) {
+                photos[photoId] = photoUri
+                //todo передалать на live data
+                val v = when (photoId) {
+                    0 -> binding.ivPhoto1
+                    1 -> binding.ivPhoto2
+                    2 -> binding.ivPhoto3
+                    3 -> binding.ivPhoto4
+                    else -> null
+                }
+                v?.let {
+                    Glide.with(it.context).load(photoUri).transition(withCrossFade()).centerCrop()
+                        .into(it)
+                }
+            }
+            //todo убрать это отсюда и подписыватья на view model
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,57 +55,25 @@ class CreateRequestFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        openBottomSheet = view.findViewById<ShapeableImageView>(R.id.SViewLoadGallery)
-        openBottomSheet2 = view.findViewById<ShapeableImageView>(R.id.SViewLoadGallery2)
-        openBottomSheet3 = view.findViewById<ShapeableImageView>(R.id.SViewLoadGallery3)
-        openBottomSheet4 = view.findViewById<ShapeableImageView>(R.id.SViewLoadGallery4)
-
-
-        bottomSheetListener(openBottomSheet)
-        bottomSheetListener(openBottomSheet2)
-        bottomSheetListener(openBottomSheet3)
-        bottomSheetListener(openBottomSheet4)
-    }
-
-    private fun bottomSheetListener(pic: ShapeableImageView) {
-        pic.setOnClickListener {
-            val view: View = layoutInflater.inflate(R.layout.bottom_sheet_ar, null)
-            val dialog = BottomSheetDialog(requireContext())
-            dialog.setContentView(view)
-            dialog.show()
-
-            val photoChoice = view.findViewById<CardView>(R.id.photo_choice)
-            val arChoice = view.findViewById<CardView>(R.id.ar_choice)
-            val galleryChoice = view.findViewById<CardView>(R.id.gallery_choice)
-
-            photoChoice.setOnClickListener {
-                val takeImageIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-                // TODO: запросить пермишны
-                if (takeImageIntent.resolveActivity(requireContext().packageManager) != null) {
-                    startActivityForResult(takeImageIntent, 200)
-                }
-
-            }
-
-            arChoice.setOnClickListener {
-                // здесь будет AR
-                Toast.makeText(context, "taking photo ar", Toast.LENGTH_SHORT).show()
-            }
-
-            galleryChoice.setOnClickListener {
-                Toast.makeText(context, "choosing photo", Toast.LENGTH_SHORT).show()
-            }
+        binding.cardPhoto1.setOnClickListener {
+            startSelectPhotoBottomSheet(0)
+        }
+        binding.cardPhoto2.setOnClickListener {
+            startSelectPhotoBottomSheet(1)
+        }
+        binding.cardPhoto3.setOnClickListener {
+            startSelectPhotoBottomSheet(2)
+        }
+        binding.cardPhoto4.setOnClickListener {
+            startSelectPhotoBottomSheet(3)
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 200) {
-            if (resultCode == Activity.RESULT_OK) {
-                val imageBitmap = data?.extras?.get("data") as? Bitmap
-                openBottomSheet.setImageBitmap(imageBitmap)
-            }
-        }
+    private fun startSelectPhotoBottomSheet(position: Int) {
+        val selectPhotoBottomSheetFragment = SelectPhotoBottomSheetFragment.newInstance(position)
+        selectPhotoBottomSheetFragment.show(
+            parentFragmentManager,
+            selectPhotoBottomSheetFragment.tag
+        )
     }
 }
