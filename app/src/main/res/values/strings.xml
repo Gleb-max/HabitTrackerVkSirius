@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">Habit Tracker</string>
 
-    <string name="statements">Заявления</string>
-    <string name="about_me">О себе:</string>
-
     <string name="statements">Заведение</string>
+    <string name="about_me">О себе:</string>
 
     //titles
     <string name="title_map">Карты</string>
