@@ -19,6 +19,7 @@
     <string name="progress_text">с номером %1$s%</string>
     <string name="are_you_user">Вы уже с нами?</string>
     <string name="login">Войти</string>
+    <string name="code_sent">Код был отправлен на номер</string>
 
     //hints
     <string name="phone_number_hint">НОМЕР ТЕЛЕФОНА</string>
@@ -28,6 +29,7 @@
     //buttons
     <string name="get_code">Получить код</string>
     <string name="register">Зарегистрироваться</string>
+    <string name="change_num"><u>Изменить номер</u></string>
 
     //content description
     <string name="search_description">Поиск</string>
@@ -38,7 +40,7 @@
 
     <string name="what_search">Что ищем?</string>
 
-    <string name="change_number">Изменить</string>
+    <string name="change_number"><u>Изменить</u></string>
     <string name="title_get_photo_ar">AR-съемка</string>
     <string name="title_get_photo_camera">Сделать фото</string>
     <string name="title_get_photo_gallery">Выбрать из галереи</string>
