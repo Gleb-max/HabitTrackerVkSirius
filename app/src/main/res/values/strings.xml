@@ -23,7 +23,6 @@
     //hints
     <string name="phone_number_hint">НОМЕР ТЕЛЕФОНА</string>
     <string name="name_hint">ИМЯ И ФАМИЛИЯ</string>
-    <string name="nick_hint">НИКНЕЙМ</string>
 
     //buttons
     <string name="get_code">Получить код</string>
