@@ -56,7 +56,11 @@
         android:id="@+id/navigation_map"
         android:name="com.habit.tracker.presentation.view.MapFragment"
         android:label="@string/label_map"
-        tools:layout="@layout/fragment_map" />
+        tools:layout="@layout/fragment_map">
+        <action
+            android:id="@+id/action_navigation_map_to_navigation_organization_details"
+            app:destination="@id/navigation_organization_details" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
@@ -64,11 +68,43 @@
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
 
+    <dialog
+        android:id="@+id/navigation_organization_details"
+        android:name="com.habit.tracker.presentation.view.OrganizationBottomSheetFragment"
+        android:label="@string/label_organization_details"
+        tools:layout="@layout/fragment_organization_bottom_sheet">
+        <argument
+            android:name="organizationId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_navigation_organization_details_to_navigation_create_request"
+            app:destination="@id/navigation_create_request" />
+        <action
+            android:id="@+id/action_navigation_organization_details_to_navigation_request_details"
+            app:destination="@id/navigation_request_details" />
+    </dialog>
+
     <fragment
         android:id="@+id/navigation_create_request"
         android:name="com.habit.tracker.presentation.view.CreateRequestFragment"
         android:label="@string/label_create_request"
-        tools:layout="@layout/fragment_create_request" />
+        tools:layout="@layout/fragment_create_request">
+
+        <action
+            android:id="@+id/action_navigation_create_request_to_navigation_select_photo"
+            app:destination="@id/navigation_select_photo" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/navigation_select_photo"
+        android:name="com.habit.tracker.presentation.view.SelectPhotoBottomSheetFragment"
+        android:label="@string/label_select_photo"
+        tools:layout="@layout/fragment_select_photo_bottom_sheet">
+        <argument
+            android:name="photoPosition"
+            app:argType="integer" />
+
+    </dialog>
 
     <fragment
         android:id="@+id/navigation_request_details"

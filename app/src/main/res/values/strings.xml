@@ -9,7 +9,9 @@
     <string name="label_map">Карты</string>
     <string name="label_profile">Профиль</string>
     <string name="label_create_request">Создание заявки</string>
+    <string name="label_select_photo">Выбор фото</string>
     <string name="label_request_details">Подробности заявки</string>
+    <string name="label_organization_details">Подробности организации</string>
     <string name="label_registration">Регистрация</string>
     <string name="label_enter_phone">Ввод телефона</string>
     <string name="label_enter_code">Ввод кода</string>

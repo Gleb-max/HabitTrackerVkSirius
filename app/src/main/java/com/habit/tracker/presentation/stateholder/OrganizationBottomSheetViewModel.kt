@@ -7,13 +7,13 @@ import com.habit.tracker.core.BaseViewModel
 import com.habit.tracker.domain.entity.Organization
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.domain.usecase.GetOrganizationUseCase
-import com.habit.tracker.domain.usecase.GetRequestsUseCase
+import com.habit.tracker.domain.usecase.GetRequestListUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class OrganizationBottomSheetViewModel @Inject constructor(
     private val getOrganizationUseCase: GetOrganizationUseCase,
-    private val getRequestsUseCase: GetRequestsUseCase
+    private val getRequestListUseCase: GetRequestListUseCase
 ) : BaseViewModel() {
 
     private val _organization = MutableLiveData<Organization?>(null)
@@ -23,8 +23,8 @@ class OrganizationBottomSheetViewModel @Inject constructor(
     val requests: LiveData<List<Request>> = _requests
 
     fun loadOrganizationData(organizationId: Int) {
-        viewModelScope.launch {
-            _requests.value = getRequestsUseCase(organizationId)
+        viewModelScope.execute {
+            _requests.value = getRequestListUseCase(organizationId)
             _organization.value = getOrganizationUseCase(organizationId)
         }
     }

@@ -39,10 +39,10 @@ class MainActivity : AppCompatActivity(),
     }
 
     override fun onRequestItemClick(request: Request) {
-        navController.navigate(R.id.navigation_request_details)
+        navController.navigate(R.id.action_navigation_organization_details_to_navigation_request_details)
     }
 
     override fun onAddNewClick() {
-        navController.navigate(R.id.navigation_create_request)
+        navController.navigate(R.id.action_navigation_organization_details_to_navigation_create_request)
     }
 }

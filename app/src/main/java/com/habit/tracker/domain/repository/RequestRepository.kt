@@ -11,4 +11,6 @@ interface RequestRepository {
     suspend fun getOrganizationById(organizationId: Int): Organization
 
     suspend fun getOrganizationRequests(organizationId: Int): List<Request>
+
+    suspend fun getOrganizationRequestById(organizationId: Int, requestId: Int): Request
 }

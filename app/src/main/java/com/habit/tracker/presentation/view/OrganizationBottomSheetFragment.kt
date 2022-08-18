@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBottomSheetBinding
 import com.habit.tracker.domain.entity.Request
@@ -29,11 +30,11 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
         (requireActivity().application as TrackerApp).component
     }
 
-    private var organizationId: Int = ORGANIZATION_UNDEFINED_ID
-
     private lateinit var requestListAdapter: RequestListAdapter
 
     private lateinit var onRequestListActionsListener: OnRequestListActionsListener
+
+    private val args by navArgs<OrganizationBottomSheetFragmentArgs>()
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -41,19 +42,6 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
         if (context is OnRequestListActionsListener) onRequestListActionsListener = context
         else throw RuntimeException("Activity must implement OnRequestListActionsListener")
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseParams()
-    }
-
-    private fun parseParams() {
-        val args = requireArguments()
-        if (!args.containsKey(ORGANIZATION_ID)) {
-            throw RuntimeException("Param organization id is absent")
-        }
-        organizationId = args.getInt(ORGANIZATION_ID)
     }
 
     override fun onCreateView(
@@ -71,11 +59,10 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
         setupRecyclerView()
         observeViewModel()
-        viewModel.loadOrganizationData(organizationId)
+        viewModel.loadOrganizationData(args.organizationId)
 
         binding.fabAddRequest.setOnClickListener {
             onRequestListActionsListener.onAddNewClick()
-            dismissAllowingStateLoss()
         }
     }
 
@@ -83,7 +70,6 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
         requestListAdapter = RequestListAdapter().apply {
             onRequestItemClickListener = { request ->
                 onRequestListActionsListener.onRequestItemClick(request)
-                dismissAllowingStateLoss()
             }
         }
         with(binding.rvRequestList) {
@@ -108,19 +94,5 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
         fun onRequestItemClick(request: Request)
 
         fun onAddNewClick()
-    }
-
-    companion object {
-
-        private const val ORGANIZATION_ID = "organization_id"
-        private const val ORGANIZATION_UNDEFINED_ID = -1
-
-        fun newInstance(organizationId: Int): OrganizationBottomSheetFragment {
-            return OrganizationBottomSheetFragment().apply {
-                arguments = bundleOf(
-                    ORGANIZATION_ID to organizationId,
-                )
-            }
-        }
     }
 }

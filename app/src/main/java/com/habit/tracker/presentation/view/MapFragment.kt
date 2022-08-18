@@ -2,6 +2,7 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.core.LocationPermissionHelper
@@ -85,6 +87,7 @@ class MapFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.organizations.observe(viewLifecycleOwner) {
+            Log.e("gtrgrtgtr", it.toString())
             for (org in it) addOrganizationMarkerToMap(org)
         }
     }
@@ -124,6 +127,7 @@ class MapFragment : Fragment() {
         activity?.let {
             AppCompatResources.getDrawable(it, R.drawable.ic_profile)?.toBitmap(100, 100)
                 ?.let { b ->
+                    Log.e("grer", ":gregrg")
                     val annotationApi = binding.mapView.annotations
                     val pointAnnotationManager =
                         annotationApi.createPointAnnotationManager(binding.mapView)
@@ -141,11 +145,10 @@ class MapFragment : Fragment() {
     }
 
     private fun openOrganizationDetails(organization: Organization) {
-        val organizationBottomSheetFragment =
-            OrganizationBottomSheetFragment.newInstance(organization.id)
-        organizationBottomSheetFragment.show(
-            parentFragmentManager,
-            organizationBottomSheetFragment.tag
+        findNavController().navigate(
+            MapFragmentDirections.actionNavigationMapToNavigationOrganizationDetails(
+                organization.id
+            )
         )
     }
 

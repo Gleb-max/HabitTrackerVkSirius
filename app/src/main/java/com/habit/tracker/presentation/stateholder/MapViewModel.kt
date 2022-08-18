@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import com.habit.tracker.core.BaseViewModel
 import com.habit.tracker.domain.entity.Organization
 import com.habit.tracker.domain.usecase.GetOrganizationListUseCase
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MapViewModel @Inject constructor(
@@ -17,7 +16,7 @@ class MapViewModel @Inject constructor(
     val organizations: LiveData<List<Organization>> = _organizations
 
     init {
-        viewModelScope.launch {
+        viewModelScope.execute {
             _organizations.value = getOrganizationListUseCase()
         }
     }

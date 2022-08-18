@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.habit.tracker.databinding.FragmentCreateRequestBinding
@@ -70,10 +71,10 @@ class CreateRequestFragment : Fragment() {
     }
 
     private fun startSelectPhotoBottomSheet(position: Int) {
-        val selectPhotoBottomSheetFragment = SelectPhotoBottomSheetFragment.newInstance(position)
-        selectPhotoBottomSheetFragment.show(
-            parentFragmentManager,
-            selectPhotoBottomSheetFragment.tag
+        findNavController().navigate(
+            CreateRequestFragmentDirections.actionNavigationCreateRequestToNavigationSelectPhoto(
+                position
+            )
         )
     }
 }

@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.habit.tracker.databinding.FragmentSelectPhotoBottomSheetBinding
 import java.io.File
@@ -23,17 +24,17 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
     private val binding: FragmentSelectPhotoBottomSheetBinding
         get() = _binding ?: throw RuntimeException("FragmentSelectPhotoBottomSheetBinding == null")
 
-    private var photoPosition: Int? = null
-
     //todo во viewmodel
     private var url = ""
+
+    private val args by navArgs<SelectPhotoBottomSheetFragmentArgs>()
 
     private val getPhotoGallery =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             setFragmentResult(
                 REQUEST_KEY, bundleOf(
                     PHOTO_URI_KEY to uri.toString(),
-                    PHOTO_POSITION to photoPosition
+                    PHOTO_POSITION to args.photoPosition
                 )
             )
             dismiss()
@@ -44,16 +45,11 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
             setFragmentResult(
                 REQUEST_KEY, bundleOf(
                     PHOTO_URI_KEY to if (ok) url else "",
-                    PHOTO_POSITION to photoPosition
+                    PHOTO_POSITION to args.photoPosition
                 )
             )
             dismiss()
         }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        parseParams()
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,14 +62,6 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
-    }
-
-    private fun parseParams() {
-        val args = requireArguments()
-        if (!args.containsKey(PHOTO_POSITION)) {
-            throw RuntimeException("Param photo position is absent")
-        }
-        photoPosition = args.getInt(PHOTO_POSITION)
     }
 
     private fun setupClickListeners() {
@@ -125,15 +113,6 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
 
         const val REQUEST_KEY = "photo_request"
         const val PHOTO_URI_KEY = "photo_uri"
-
         const val PHOTO_POSITION = "photo_position"
-
-        fun newInstance(photoPosition: Int): SelectPhotoBottomSheetFragment {
-            return SelectPhotoBottomSheetFragment().apply {
-                arguments = bundleOf(
-                    PHOTO_POSITION to photoPosition
-                )
-            }
-        }
     }
 }
