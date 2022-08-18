@@ -11,4 +11,140 @@
     tools:context=".presentation.view.EnterCodeFragment">
 
 
+    <TextView
+        android:id="@+id/appNameTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/black"
+        android:textSize="48sp" />
+
+    <TextView
+        android:id="@+id/confirmation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:gravity="center"
+        android:text="Код подтверждения"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/codeSent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="@string/code_sent"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="+78382432785"
+        android:textSize="18sp" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/changeNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="@string/change_num"
+        android:textColor="@color/dark_green"
+        android:textSize="17sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/editTextNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/editTextNumber4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="@color/black"
+            android:cursorVisible="false"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/wrongCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Неверный код!"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="23sp"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/getCodeAfter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:gravity="center"
+        android:text="Получить новый код через"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/codeTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
 </LinearLayout>
