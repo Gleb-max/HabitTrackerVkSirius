@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/navigation_enter_code"
-        android:name="com.habit.tracker.presentation.view."
+        android:name="com.habit.tracker.presentation.view.EnterCodeFragment"
         android:label="@string/label_enter_code"
         tools:layout="@layout/fragment_enter_code" />
 
