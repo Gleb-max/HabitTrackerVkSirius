@@ -18,7 +18,8 @@
         android:text="@string/label_registration"
         android:textAlignment="textStart"
         android:textColor="@color/dark_blue"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,6 +58,20 @@
         android:layout_marginTop="48dp"
         android:backgroundTint="@color/dark_green"
         android:hint="@string/name_hint"
+        android:inputType="textCapWords"
+        android:lines="1"
+        android:textAllCaps="true"
+        android:textColorHighlight="@color/dark_green"
+        android:textColorHint="@color/gray"
+        android:textSize="15sp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nick_name_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/dark_green"
+        android:hint="@string/nick_hint"
         android:inputType="textCapWords"
         android:lines="1"
         android:textAllCaps="true"
