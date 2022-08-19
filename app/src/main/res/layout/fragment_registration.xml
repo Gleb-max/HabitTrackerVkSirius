@@ -65,6 +65,20 @@
         android:textColorHint="@color/gray"
         android:textSize="15sp" />
 
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nickname_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="@color/dark_green"
+        android:hint="@string/password_hint"
+        android:inputType="textPassword|textCapWords"
+        android:lines="1"
+        android:textAllCaps="true"
+        android:textColorHighlight="@color/dark_green"
+        android:textColorHint="@color/gray"
+        android:textSize="15sp" />
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
