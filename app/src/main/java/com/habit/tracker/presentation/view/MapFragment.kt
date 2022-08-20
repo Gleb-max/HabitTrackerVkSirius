@@ -85,10 +85,10 @@ class MapFragment : Fragment() {
 
         binding.tilSearch.setEndIconOnClickListener {
             val filterDialog = BottomSheetDialog(requireContext())
-            val view = layoutInflater.inflate(R.layout.fragment_filters_bottom_sheet, null)
-            filterDialog.setContentView(view)
+            val filterView = layoutInflater.inflate(R.layout.fragment_filters_bottom_sheet, null)
+            filterDialog.setContentView(filterView)
             filterDialog.show()
-            seekBarTracker(view)
+            seekBarTracker(filterView)
         }
     }
 
