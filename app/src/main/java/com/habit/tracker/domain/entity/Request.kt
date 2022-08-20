@@ -8,5 +8,6 @@ data class Request(
     val photos: List<String>
     //todo
 //    val likes:
+    // val dislikes
 //val creator: User
 )

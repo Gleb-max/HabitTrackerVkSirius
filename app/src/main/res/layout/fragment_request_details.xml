@@ -3,9 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    tools:context=".presentation.MainActivity"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -95,75 +97,54 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/dizlike"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="15dp"
-        android:padding="2dp"
+    <ToggleButton
+        android:id="@+id/toggleLike"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/toggle_like_selector"
+        android:textOff=""
+        android:textOn=""
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:shapeAppearanceOverlay="@style/shape_round"
-        app:strokeColor="#BCBCBC"
-        app:strokeWidth="2dp" />
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/like"
-        android:layout_width="110dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="15dp"
-        android:padding="2dp"
+    <ToggleButton
+        android:id="@+id/toggleDislike"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="23dp"
+        android:textOff=""
+        android:textOn=""
+        android:background="@drawable/toggle_dislike_selector"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/shape_round"
-        app:strokeColor="#BCBCBC"
-        app:strokeWidth="2dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/ic_baseline_favorite_24"
-        app:layout_constraintBottom_toBottomOf="@+id/like"
-        app:layout_constraintEnd_toEndOf="@+id/like" />
+        app:layout_constraintStart_toEndOf="@+id/dislikeCount" />
 
     <TextView
+        android:id="@+id/likeCount"
         android:layout_width="40dp"
         android:layout_height="39dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="22dp"
         android:gravity="center"
         android:text="56"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/like"
-        app:layout_constraintStart_toStartOf="@+id/like" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/toggleLike" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/dislikeCount"
         android:layout_width="40dp"
         android:layout_height="39dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="22dp"
         android:gravity="center"
         android:text="56"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/dizlike"
-        app:layout_constraintStart_toStartOf="@+id/dizlike" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/ic_baseline_thumb_down_alt_24"
-        app:layout_constraintBottom_toBottomOf="@+id/dizlike"
-        app:layout_constraintEnd_toEndOf="@+id/dizlike" />
 </androidx.constraintlayout.widget.ConstraintLayout>
