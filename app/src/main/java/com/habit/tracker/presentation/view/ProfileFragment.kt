@@ -21,45 +21,4 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    // это BottomSheet, надо прикрутить это к карте
-        // и кнопку тоже переопределить
-//        val buttonSheet = binding.buttonSheet
-//        buttonSheet.setOnClickListener {
-//
-//            // отображаем BottomSheet
-//            val view: View = layoutInflater.inflate(R.layout.item_bottom_sheet, null)
-//            val dialog = BottomSheetDialog(requireContext())
-//            dialog.setContentView(view)
-//            dialog.show()
-//
-//            // связываем SeekBar с его TextView
-//            val seekBar = view.findViewById<SeekBar>(R.id.seek_bar_filter)
-//            val seekNum = view.findViewById<TextView>(R.id.seek_num)
-//
-//            var startPoint = 0
-//            var endPoint = 100
-//
-//            seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-//                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-//                    seekNum.text = p1.toString()
-//                }
-//
-//                override fun onStartTrackingTouch(p0: SeekBar?) {
-//                    if (seekBar != null) {
-//                        startPoint = seekBar.progress
-//                    }
-//                }
-//
-//                override fun onStopTrackingTouch(p0: SeekBar?) {
-//                    if (seekBar != null) {
-//                        endPoint = seekBar.progress
-//                    }
-//                }
-//
-//            })
-//        }
-    }
 }

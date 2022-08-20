@@ -6,11 +6,14 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
+import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.core.LocationPermissionHelper
@@ -81,7 +84,11 @@ class MapFragment : Fragment() {
         }
 
         binding.tilSearch.setEndIconOnClickListener {
-            //todo
+            val filterDialog = BottomSheetDialog(requireContext())
+            val view = layoutInflater.inflate(R.layout.fragment_filters_bottom_sheet, null)
+            filterDialog.setContentView(view)
+            filterDialog.show()
+            seekBarTracker(view)
         }
     }
 
@@ -125,7 +132,7 @@ class MapFragment : Fragment() {
     private fun addOrganizationMarkerToMap(organization: Organization) {
         val geo = organization.geo
         activity?.let {
-            AppCompatResources.getDrawable(it, R.drawable.ic_profile)?.toBitmap(100, 100)
+            AppCompatResources.getDrawable(it, R.drawable.ic_baseline_location_on_24)?.toBitmap(100, 100)
                 ?.let { b ->
                     Log.e("grer", ":gregrg")
                     val annotationApi = binding.mapView.annotations
@@ -200,6 +207,33 @@ class MapFragment : Fragment() {
             gestures.removeOnMoveListener(onMoveListener)
         }
     }
+
+    private fun seekBarTracker(view: View) {
+        val seekBar = view.findViewById<SeekBar>(R.id.seek_bar_filter)
+            val seekNum = view.findViewById<TextView>(R.id.seek_num)
+
+            var startPoint = 0
+            var endPoint = 100
+
+            seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                    seekNum.text = p1.toString()
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                    if (seekBar != null) {
+                        startPoint = seekBar.progress
+                    }
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                    if (seekBar != null) {
+                        endPoint = seekBar.progress
+                    }
+                }
+
+            })
+        }
 
     override fun onDestroyView() {
         onCameraTrackingDismissed()

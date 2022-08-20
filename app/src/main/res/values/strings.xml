@@ -26,6 +26,7 @@
     //hints
     <string name="phone_number_hint">НОМЕР ТЕЛЕФОНА</string>
     <string name="name_hint">ИМЯ И ФАМИЛИЯ</string>
+    <string name="password_hint">ПАРОЛЬ</string>
 
     //buttons
     <string name="get_code">Получить код</string>
