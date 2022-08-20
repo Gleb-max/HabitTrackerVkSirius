@@ -1,7 +1,7 @@
 package com.habit.tracker.di
 
 import android.app.Application
-import com.habit.tracker.presentation.view.OrganizationBottomSheetFragment
+import com.habit.tracker.presentation.view.OrganizationFragment
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.presentation.MainActivity
 import com.habit.tracker.presentation.view.MapFragment
@@ -26,7 +26,7 @@ interface ApplicationComponent {
 
     fun inject(todoItemFragment: ProfileFragment)
 
-    fun inject(organizationBottomSheetFragment: OrganizationBottomSheetFragment)
+    fun inject(organizationFragment: OrganizationFragment)
 
     @Component.Factory
     interface Factory {
