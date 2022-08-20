@@ -16,6 +16,9 @@ class OrganizationBottomSheetViewModel @Inject constructor(
     private val getRequestListUseCase: GetRequestListUseCase
 ) : BaseViewModel() {
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    var isLoading: LiveData<Boolean> = _isLoading
+
     private val _organization = MutableLiveData<Organization?>(null)
     val organization: LiveData<Organization?> = _organization
 
@@ -24,8 +27,10 @@ class OrganizationBottomSheetViewModel @Inject constructor(
 
     fun loadOrganizationData(organizationId: Int) {
         viewModelScope.execute {
+            _isLoading.value = true
             _requests.value = getRequestListUseCase(organizationId)
             _organization.value = getOrganizationUseCase(organizationId)
+            _isLoading.value = false
         }
     }
 }

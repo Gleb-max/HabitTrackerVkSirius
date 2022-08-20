@@ -2,9 +2,11 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -86,6 +88,10 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
         viewModel.requests.observe(viewLifecycleOwner) {
             requestListAdapter.submitList(it)
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner){
+            binding.progressBar.isVisible = it
         }
     }
 
