@@ -1,5 +1,6 @@
 package com.habit.tracker.presentation.view
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SeekBar
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
@@ -16,7 +19,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
-import com.habit.tracker.core.LocationPermissionHelper
 import com.habit.tracker.databinding.FragmentMapBinding
 import com.habit.tracker.domain.entity.Organization
 import com.habit.tracker.presentation.stateholder.MapViewModel
@@ -35,7 +37,6 @@ import com.mapbox.maps.plugin.gestures.gestures
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener
 import com.mapbox.maps.plugin.locationcomponent.location
-import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 class MapFragment : Fragment() {
@@ -60,7 +61,23 @@ class MapFragment : Fragment() {
         binding.mapView.gestures.focalPoint = binding.mapView.getMapboxMap().pixelForCoordinate(it)
     }
 
-    private lateinit var locationPermissionHelper: LocationPermissionHelper
+    val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            onMapReady()
+        } else {
+            Toast.makeText(
+                requireActivity(),
+                "Мы не сможем показать карту мероприятия без твоего местоположения",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun startLocationPermissionRequest() {
+        requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -78,10 +95,7 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[MapViewModel::class.java]
-        locationPermissionHelper = LocationPermissionHelper(WeakReference(requireActivity()))
-        locationPermissionHelper.checkPermissions {
-            onMapReady()
-        }
+        startLocationPermissionRequest()
 
         binding.tilSearch.setEndIconOnClickListener {
             val filterDialog = BottomSheetDialog(requireContext())
@@ -239,15 +253,5 @@ class MapFragment : Fragment() {
         onCameraTrackingDismissed()
         super.onDestroyView()
         _binding = null
-    }
-
-    @Deprecated("Deprecated in Java")
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        locationPermissionHelper.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }
