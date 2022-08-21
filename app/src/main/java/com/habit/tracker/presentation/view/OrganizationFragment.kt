@@ -12,6 +12,7 @@ import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBinding
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
+import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
 import javax.inject.Inject
