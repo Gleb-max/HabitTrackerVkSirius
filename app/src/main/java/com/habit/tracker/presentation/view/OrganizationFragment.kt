@@ -68,8 +68,8 @@ class OrganizationFragment : Fragment() {
 
     private fun setupRecyclerView() {
         requestListAdapter = RequestListAdapter().apply {
-            onRequestItemClickListener = { request ->
-                onRequestListActionsListener.onRequestItemClick(request)
+            onRequestItemClickListener = { id, request ->
+                onRequestListActionsListener.onRequestItemClick(id, request)
             }
         }
         with(binding.rvRequestList) {
@@ -80,6 +80,7 @@ class OrganizationFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.organization.observe(viewLifecycleOwner) {
             if (it != null) {
+                requestListAdapter.applyOrganizationId(it.id)
                 binding.tvStatements.text = it.name
             }
         }
@@ -91,7 +92,7 @@ class OrganizationFragment : Fragment() {
 
     interface OnRequestListActionsListener {
 
-        fun onRequestItemClick(request: Request)
+        fun onRequestItemClick(id: Int, request: Request)
 
         fun onAddNewClick()
     }

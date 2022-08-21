@@ -69,7 +69,6 @@ class RequestDetailsFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-
         viewModel.organization.observe(viewLifecycleOwner) {
             if (it != null) binding.organizationName.text = it.name
         }
@@ -78,10 +77,6 @@ class RequestDetailsFragment : Fragment() {
             if (it != null) {
                 binding.requestName.text = it.title
                 binding.description.text = it.description
-                // binding.photo = it.photos[0]
-                // binding.photo = it.photos[1]
-                // binding.photo = it.photos[2]
-                // binding.photo = it.photos[3]
             }
         }
     }
