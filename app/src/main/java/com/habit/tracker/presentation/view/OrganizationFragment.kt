@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -12,7 +13,6 @@ import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBinding
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
-import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
 import javax.inject.Inject
@@ -64,6 +64,12 @@ class OrganizationFragment : Fragment() {
         binding.fabAddRequest.setOnClickListener {
             onRequestListActionsListener.onAddNewClick()
         }
+
+        binding.btnRetry.setOnClickListener {
+            observeViewModel()
+            viewModel.loadOrganizationData(args.organizationId)
+        }
+
     }
 
     private fun setupRecyclerView() {
@@ -80,14 +86,31 @@ class OrganizationFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.organization.observe(viewLifecycleOwner) {
             if (it != null) {
-                requestListAdapter.applyOrganizationId(it.id)
                 binding.tvStatements.text = it.name
             }
         }
 
         viewModel.requests.observe(viewLifecycleOwner) {
             requestListAdapter.submitList(it)
+            viewState(false)
         }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) {
+            binding.progressBar.isVisible = it
+        }
+
+        viewModel.isError.observe(viewLifecycleOwner) {
+            viewState(it)
+        }
+    }
+
+    private fun viewState(state: Boolean) {
+        binding.tvStatements.isVisible = !state
+        binding.rvRequestList.isVisible = !state
+
+        binding.tvNoInternet.isVisible = state
+        binding.ivNoInternetPlaceholder.isVisible = state
+        binding.btnRetry.isVisible = state
     }
 
     interface OnRequestListActionsListener {
