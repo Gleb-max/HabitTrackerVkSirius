@@ -79,13 +79,12 @@ class OrganizationFragment : Fragment() {
             observeViewModel()
             viewModel.loadOrganizationData(args.organizationId)
         }
-
     }
 
     private fun setupRecyclerView() {
         requestListAdapter = RequestListAdapter().apply {
-            onRequestItemClickListener = { id, request ->
-                onRequestListActionsListener.onRequestItemClick(id, request)
+            onRequestItemClickListener = { request ->
+                onRequestListActionsListener.onRequestItemClick(args.organizationId, request)
             }
         }
         requestListAdapter.applyOrganizationId(organizationId)
@@ -133,7 +132,7 @@ class OrganizationFragment : Fragment() {
 
     interface OnRequestListActionsListener {
 
-        fun onRequestItemClick(id: Int, request: Request)
+        fun onRequestItemClick(organizationId: Int, request: Request)
 
         fun onAddNewClick()
     }
