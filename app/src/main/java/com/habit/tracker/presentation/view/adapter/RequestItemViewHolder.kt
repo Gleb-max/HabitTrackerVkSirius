@@ -10,7 +10,7 @@ class RequestItemViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(requestItem: Request) {
-        Glide.with(binding.root.context).load(requestItem.photos[0]).into(binding.ivPhoto)
+        Glide.with(binding.root.context).load(requestItem.photos.getOrNull(0)).into(binding.ivPhoto)
         binding.tvTitle.text = requestItem.title
         binding.tvDescription.text = requestItem.description
     }

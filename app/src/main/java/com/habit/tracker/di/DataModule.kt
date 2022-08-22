@@ -4,6 +4,7 @@ import com.google.gson.GsonBuilder
 import com.habit.tracker.data.repository.RequestRepositoryImpl
 import com.habit.tracker.data.source.remote.api.RequestsApi
 import com.habit.tracker.data.source.remote.interceptor.AuthHeaderInterceptor
+import com.habit.tracker.data.source.remote.interceptor.RetryInterceptor
 import com.habit.tracker.domain.repository.RequestRepository
 import dagger.Binds
 import dagger.Module
@@ -27,12 +28,6 @@ interface DataModule {
 
         @Provides
         @ApplicationScope
-        fun provideAuthHeaderInterceptor(): AuthHeaderInterceptor {
-            return AuthHeaderInterceptor()
-        }
-
-        @Provides
-        @ApplicationScope
         fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
             return HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BASIC
@@ -51,7 +46,8 @@ interface DataModule {
         @ApplicationScope
         fun provideOkHttpClient(
             authHeaderInterceptor: AuthHeaderInterceptor,
-            httpLoggingInterceptor: HttpLoggingInterceptor
+            retryInterceptor: RetryInterceptor,
+            httpLoggingInterceptor: HttpLoggingInterceptor,
         ): OkHttpClient {
             return OkHttpClient.Builder().apply {
                 readTimeout(30L, TimeUnit.SECONDS)
@@ -60,6 +56,7 @@ interface DataModule {
                 retryOnConnectionFailure(true)
                 with(interceptors()) {
                     addInterceptor(authHeaderInterceptor)
+                    addInterceptor(retryInterceptor)
                     addInterceptor(httpLoggingInterceptor)
                 }
             }.build()
