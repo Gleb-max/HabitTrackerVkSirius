@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".presentation.MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/backShimmer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="61dp"
+                android:src="@drawable/ic_baseline_chevron_left_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/organizationNameShimmer"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="53dp"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:background="@color/shimmer_color"
+                app:layout_constraintBottom_toBottomOf="@id/backShimmer"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/shareShimmer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="61dp"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/ic_baseline_share_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/requestNameShimmer"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="118dp"
+                android:textColor="@color/black"
+                android:textSize="23sp"
+                android:background="@color/shimmer_color"
+                app:layout_constraintBottom_toBottomOf="@id/backShimmer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/organizationNameShimmer" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/photoShimmer"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="183dp"
+                android:layout_marginEnd="24dp"
+                android:scaleType="centerInside"
+                android:background="@color/shimmer_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/shape_round" />
+
+            <TextView
+                android:id="@+id/addressShimmer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textColor="#636363"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:background="@color/shimmer_color"
+                app:layout_constraintEnd_toEndOf="@id/photoShimmer"
+                app:layout_constraintStart_toStartOf="@id/photoShimmer"
+                app:layout_constraintTop_toBottomOf="@+id/photoShimmer" />
+
+            <TextView
+                android:id="@+id/descriptionShimmer"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="250dp"
+                android:lines="10"
+                android:background="@color/shimmer_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/addressShimmer"
+                app:layout_constraintStart_toStartOf="@+id/addressShimmer"
+                app:layout_constraintTop_toBottomOf="@+id/addressShimmer" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <ToggleButton
+        android:id="@+id/toggleLikeShimmer"
+        android:layout_width="36dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="22dp"
+        android:background="@color/shimmer_color"
+        android:textOff=""
+        android:textOn=""
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2" />
+
+    <ToggleButton
+        android:id="@+id/toggleDislikeShimmer"
+        android:layout_width="36dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="22dp"
+        android:textOff=""
+        android:textOn=""
+        android:background="@color/shimmer_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/dislikeCountShimmer" />
+
+    <TextView
+        android:id="@+id/likeCountShimmer"
+        android:layout_width="40dp"
+        android:layout_height="39dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="22dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@color/shimmer_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/toggleLikeShimmer" />
+
+    <TextView
+        android:id="@+id/dislikeCountShimmer"
+        android:layout_width="40dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginBottom="22dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="@color/shimmer_color"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
