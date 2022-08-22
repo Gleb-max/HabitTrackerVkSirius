@@ -110,6 +110,13 @@
         android:id="@+id/navigation_request_details"
         android:name="com.habit.tracker.presentation.view.RequestDetailsFragment"
         android:label="@string/label_request_details"
-        tools:layout="@layout/fragment_request_details" />
+        tools:layout="@layout/fragment_request_details" >
+        <argument
+            android:name="organizationId"
+            app:argType="integer" />
+        <argument
+            android:name="requestId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

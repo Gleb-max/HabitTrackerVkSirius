@@ -4,11 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.habit.tracker.databinding.LayoutRequestCardBinding
+import com.habit.tracker.domain.entity.Organization
 import com.habit.tracker.domain.entity.Request
 
 class RequestListAdapter : ListAdapter<Request, RequestItemViewHolder>(RequestItemDiffCallback()) {
 
-    var onRequestItemClickListener: ((Request) -> Unit)? = null
+    var onRequestItemClickListener: ((Int, Request) -> Unit)? = null
+    // todo почему nullable?
+    var organizationId: Int? = null
+
+    fun applyOrganizationId(orgId: Int) {
+        organizationId = orgId
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestItemViewHolder {
         val binding = LayoutRequestCardBinding.inflate(
@@ -24,7 +31,7 @@ class RequestListAdapter : ListAdapter<Request, RequestItemViewHolder>(RequestIt
         holder.bind(requestItem)
         val binding = holder.binding
         binding.root.setOnClickListener {
-            onRequestItemClickListener?.invoke(requestItem)
+            organizationId?.let { it1 -> onRequestItemClickListener?.invoke(it1, requestItem) }
         }
     }
 }

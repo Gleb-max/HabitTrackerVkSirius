@@ -6,6 +6,7 @@ import com.habit.tracker.TrackerApp
 import com.habit.tracker.presentation.MainActivity
 import com.habit.tracker.presentation.view.MapFragment
 import com.habit.tracker.presentation.view.ProfileFragment
+import com.habit.tracker.presentation.view.RequestDetailsFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -27,6 +28,8 @@ interface ApplicationComponent {
     fun inject(todoItemFragment: ProfileFragment)
 
     fun inject(organizationFragment: OrganizationFragment)
+
+    fun inject(requestDetailsFragment: RequestDetailsFragment)
 
     @Component.Factory
     interface Factory {

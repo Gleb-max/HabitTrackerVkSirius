@@ -28,8 +28,8 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
-    <style name="shape_round" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="shape_round" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">20%</item>
+        <item name="cornerSize">16dp</item>
     </style>
 </resources>

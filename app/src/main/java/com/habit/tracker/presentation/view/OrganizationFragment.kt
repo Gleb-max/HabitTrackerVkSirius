@@ -12,6 +12,7 @@ import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBinding
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
+import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
 import javax.inject.Inject
@@ -67,8 +68,8 @@ class OrganizationFragment : Fragment() {
 
     private fun setupRecyclerView() {
         requestListAdapter = RequestListAdapter().apply {
-            onRequestItemClickListener = { request ->
-                onRequestListActionsListener.onRequestItemClick(request)
+            onRequestItemClickListener = { id, request ->
+                onRequestListActionsListener.onRequestItemClick(id, request)
             }
         }
         with(binding.rvRequestList) {
@@ -79,6 +80,7 @@ class OrganizationFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.organization.observe(viewLifecycleOwner) {
             if (it != null) {
+                requestListAdapter.applyOrganizationId(it.id)
                 binding.tvStatements.text = it.name
             }
         }
@@ -90,7 +92,7 @@ class OrganizationFragment : Fragment() {
 
     interface OnRequestListActionsListener {
 
-        fun onRequestItemClick(request: Request)
+        fun onRequestItemClick(id: Int, request: Request)
 
         fun onAddNewClick()
     }
