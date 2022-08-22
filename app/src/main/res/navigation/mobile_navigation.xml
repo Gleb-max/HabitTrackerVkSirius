@@ -68,11 +68,11 @@
         android:label="@string/label_profile"
         tools:layout="@layout/fragment_profile" />
 
-    <dialog
+    <fragment
         android:id="@+id/navigation_organization_details"
-        android:name="com.habit.tracker.presentation.view.OrganizationBottomSheetFragment"
+        android:name="com.habit.tracker.presentation.view.OrganizationFragment"
         android:label="@string/label_organization_details"
-        tools:layout="@layout/fragment_organization_bottom_sheet">
+        tools:layout="@layout/fragment_organization">
         <argument
             android:name="organizationId"
             app:argType="integer" />
@@ -82,7 +82,7 @@
         <action
             android:id="@+id/action_navigation_organization_details_to_navigation_request_details"
             app:destination="@id/navigation_request_details" />
-    </dialog>
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_create_request"
@@ -110,6 +110,13 @@
         android:id="@+id/navigation_request_details"
         android:name="com.habit.tracker.presentation.view.RequestDetailsFragment"
         android:label="@string/label_request_details"
-        tools:layout="@layout/fragment_request_details" />
+        tools:layout="@layout/fragment_request_details" >
+        <argument
+            android:name="organizationId"
+            app:argType="integer" />
+        <argument
+            android:name="requestId"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

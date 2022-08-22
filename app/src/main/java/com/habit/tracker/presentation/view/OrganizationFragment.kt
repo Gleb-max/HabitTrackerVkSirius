@@ -8,22 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
-import com.habit.tracker.databinding.FragmentOrganizationBottomSheetBinding
+import com.habit.tracker.databinding.FragmentOrganizationBinding
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
 import javax.inject.Inject
 
-class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
+class OrganizationFragment : BottomSheetDialogFragment() {
 
-    private var _binding: FragmentOrganizationBottomSheetBinding? = null
-    private val binding: FragmentOrganizationBottomSheetBinding
+    private var _binding: FragmentOrganizationBinding? = null
+    private val binding: FragmentOrganizationBinding
         get() = _binding ?: throw RuntimeException("FragmentTaskListBinding == null")
 
     @Inject
@@ -37,7 +38,7 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var onRequestListActionsListener: OnRequestListActionsListener
 
-    private val args by navArgs<OrganizationBottomSheetFragmentArgs>()
+    private val args by navArgs<OrganizationFragmentArgs>()
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -51,7 +52,7 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOrganizationBottomSheetBinding.inflate(inflater, container, false)
+        _binding = FragmentOrganizationBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -71,8 +72,8 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun setupRecyclerView() {
         requestListAdapter = RequestListAdapter().apply {
-            onRequestItemClickListener = { request ->
-                onRequestListActionsListener.onRequestItemClick(request)
+            onRequestItemClickListener = { id, request ->
+                onRequestListActionsListener.onRequestItemClick( id ,request)
             }
         }
         with(binding.rvRequestList) {
@@ -102,7 +103,7 @@ class OrganizationBottomSheetFragment : BottomSheetDialogFragment() {
 
     interface OnRequestListActionsListener {
 
-        fun onRequestItemClick(request: Request)
+        fun onRequestItemClick(id: Int, request: Request)
 
         fun onAddNewClick()
     }

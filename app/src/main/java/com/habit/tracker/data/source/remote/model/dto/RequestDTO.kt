@@ -13,4 +13,6 @@ class RequestDTO(
     val done: Boolean,
     @SerializedName("photos")
     val photos: List<String>,
+    @SerializedName("organizationId")
+    val organizationId: Int?,
 )

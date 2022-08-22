@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.HabitTrackerVkSirius" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/dark_green</item>
         <item name="colorPrimaryVariant">@color/dark_green</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -28,8 +28,8 @@
         <item name="cornerFamily">rounded</item>
     </style>
 
-    <style name="shape_round" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <style name="shape_round" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">20%</item>
+        <item name="cornerSize">16dp</item>
     </style>
 </resources>
