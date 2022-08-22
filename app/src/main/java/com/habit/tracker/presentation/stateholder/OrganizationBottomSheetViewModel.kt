@@ -20,8 +20,8 @@ class OrganizationBottomSheetViewModel @Inject constructor(
     private val _isError = MutableLiveData<Boolean>()
     var isError: LiveData<Boolean> = _isError
 
-    private val _isLoading = MutableLiveData<Boolean>()
-    var isLoading: LiveData<Boolean> = _isLoading
+    private val _shimmerCloseNeeded = MutableLiveData<Boolean>(null)
+    var shimmerCloseNeeded: LiveData<Boolean> = _shimmerCloseNeeded
 
     private val _organization = MutableLiveData<Organization?>(null)
     val organization: LiveData<Organization?> = _organization
@@ -30,16 +30,14 @@ class OrganizationBottomSheetViewModel @Inject constructor(
     val requests: LiveData<List<Request>> = _requests
 
     fun loadOrganizationData(organizationId: Int) {
-        _isLoading.value = true
         viewModelScope.execute(onSuccess = {
             viewModelScope.launch {
-                _isLoading.value = false
+                _shimmerCloseNeeded.value = true
             }
         }, onError = {
             viewModelScope.launch {
                 delay(2000)
                 _isError.value = true
-                _isLoading.value = false
             }
         },
            function = {
