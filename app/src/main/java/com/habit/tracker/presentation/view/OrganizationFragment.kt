@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -21,7 +22,7 @@ import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
 import javax.inject.Inject
 
-class OrganizationFragment : BottomSheetDialogFragment() {
+class OrganizationFragment : Fragment() {
 
     private var _binding: FragmentOrganizationBinding? = null
     private val binding: FragmentOrganizationBinding
@@ -97,6 +98,11 @@ class OrganizationFragment : BottomSheetDialogFragment() {
         }
 
         viewModel.isError.observe(viewLifecycleOwner){
+            // скрыть контент, показать ошибку и наоборот
+            binding.tvStatements.isVisible = false
+            binding.fabAddRequest.isEnabled = false
+            binding.rvRequestList.isVisible = false
+
             Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
         }
     }
