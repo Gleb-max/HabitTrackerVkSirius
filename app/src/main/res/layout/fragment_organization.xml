@@ -19,6 +19,33 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/statements" />
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerOrganization"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStatements">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/shimmer_problems_item" />
+
+            <include layout="@layout/shimmer_problems_item" />
+
+            <include layout="@layout/shimmer_problems_item" />
+
+            <include layout="@layout/shimmer_problems_item" />
+
+            <include layout="@layout/shimmer_problems_item" />
+
+        </LinearLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_request_list"
         android:layout_width="match_parent"
@@ -26,21 +53,12 @@
         android:layout_marginTop="15dp"
         android:clipToPadding="false"
         android:paddingBottom="32dp"
+        android:visibility="invisible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvStatements"
         tools:itemCount="8"
         tools:listitem="@layout/layout_request_card" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_request"
@@ -60,13 +78,12 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:src="@drawable/ic_no_internet_128"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars"
-        tools:visibility="visible" />
+        tools:src="@tools:sample/avatars" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvNoInternet"
@@ -76,23 +93,21 @@
         android:gravity="center"
         android:text="@string/no_internet_description"
         android:textSize="18sp"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/ivNoInternetPlaceholder"
         app:layout_constraintStart_toStartOf="@id/ivNoInternetPlaceholder"
-        app:layout_constraintTop_toBottomOf="@id/ivNoInternetPlaceholder"
-        tools:visibility="visible" />
+        app:layout_constraintTop_toBottomOf="@id/ivNoInternetPlaceholder" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/btnRetry"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:tint="@color/purple_500"
-        android:src="@drawable/ic_baseline_replay"
         android:layout_marginTop="10dp"
-        android:visibility="gone"
+        android:src="@drawable/ic_baseline_replay"
+        android:tint="@color/purple_500"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="@id/tvNoInternet"
         app:layout_constraintStart_toStartOf="@id/tvNoInternet"
-        app:layout_constraintTop_toBottomOf="@id/tvNoInternet"
-        tools:visibility="visible"/>
+        app:layout_constraintTop_toBottomOf="@id/tvNoInternet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
