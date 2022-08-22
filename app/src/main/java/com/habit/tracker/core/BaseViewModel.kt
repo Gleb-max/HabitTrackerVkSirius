@@ -20,7 +20,7 @@ abstract class BaseViewModel : ViewModel() {
                     onSuccess?.invoke()
                 }
                 .onFailure { error ->
-                    error.printStackTrace()
+//                    error.printStackTrace()
                     onError?.invoke()
                 }
         }
