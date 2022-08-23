@@ -108,7 +108,6 @@ class MapFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.organizations.observe(viewLifecycleOwner) {
-            Log.e("gtrgrtgtr", it.toString())
             for (org in it) addOrganizationMarkerToMap(org)
         }
     }
@@ -149,7 +148,6 @@ class MapFragment : Fragment() {
             AppCompatResources.getDrawable(it, R.drawable.ic_baseline_location_on_24)
                 ?.toBitmap(100, 100)
                 ?.let { b ->
-                    Log.e("grer", ":gregrg")
                     val annotationApi = binding.mapView.annotations
                     val pointAnnotationManager =
                         annotationApi.createPointAnnotationManager(binding.mapView)
