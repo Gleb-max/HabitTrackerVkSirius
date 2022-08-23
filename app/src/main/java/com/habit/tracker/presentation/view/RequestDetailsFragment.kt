@@ -18,6 +18,7 @@ import androidx.core.graphics.drawable.toBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.facebook.shimmer.ShimmerFrameLayout
 import com.habit.tracker.R
@@ -54,7 +55,8 @@ class RequestDetailsFragment : Fragment() {
         component.inject(this)
         super.onAttach(context)
 
-        if (context is OrganizationFragment.OnRequestListActionsListener) onRequestActionsListener = context
+        if (context is OrganizationFragment.OnRequestListActionsListener) onRequestActionsListener =
+            context
         else throw RuntimeException("Activity must implement OnRequestListActionsListener")
     }
 
@@ -108,7 +110,7 @@ class RequestDetailsFragment : Fragment() {
         }
 
         btnBack.setOnClickListener {
-            onRequestActionsListener.onBackFromRequestClick(args.organizationId)
+            findNavController().navigateUp()
         }
 
         share.setOnClickListener {
@@ -116,11 +118,13 @@ class RequestDetailsFragment : Fragment() {
             intent.action = Intent.ACTION_SEND
             intent.type = "text/plain"
 
-            intent.putExtra(Intent.EXTRA_TEXT,
+            intent.putExtra(
+                Intent.EXTRA_TEXT,
                 "Организация: ${binding.organizationName.text}\n" +
                         "Тема заявки: ${binding.requestName.text}\n" +
                         "Адрес организации: ${binding.address.text}\n" +
-                        "Подробности: ${binding.description.text}")
+                        "Подробности: ${binding.description.text}"
+            )
 
             startActivity(Intent.createChooser(intent, "Поделиться"))
         }

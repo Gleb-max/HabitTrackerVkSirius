@@ -14,7 +14,6 @@ import javax.inject.Inject
 
 class RequestDetailsViewModel @Inject constructor(
     private val getRequestUseCase: GetRequestUseCase,
-    private val getOrganizationUseCase: GetOrganizationUseCase
 ) : BaseViewModel() {
 
     private val _request = MutableLiveData<Request?>(null)
@@ -41,7 +40,6 @@ class RequestDetailsViewModel @Inject constructor(
                 }
             }, function = {
                 _request.value = getRequestUseCase(organizationId, requestId)
-                _organization.value = getOrganizationUseCase(organizationId)
             }
         )
     }

@@ -47,10 +47,6 @@ class MainActivity : AppCompatActivity(),
         navController.navigate(OrganizationFragmentDirections.actionNavigationOrganizationDetailsToNavigationRequestDetails(organizationId, request.id))
     }
 
-    override fun onBackFromRequestClick(organizationId: Int) {
-        navController.navigate(RequestDetailsFragmentDirections.actionNavigationRequestDetailsToNavigationOrganizationDetails(organizationId))
-    }
-
     override fun onAddNewClick() {
         navController.navigate(R.id.action_navigation_organization_details_to_navigation_create_request)
     }

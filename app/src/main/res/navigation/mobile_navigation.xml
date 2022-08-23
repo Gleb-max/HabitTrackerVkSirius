@@ -120,9 +120,6 @@
         <argument
             android:name="requestId"
             app:argType="integer" />
-        <action
-            android:id="@+id/action_navigation_request_details_to_navigation_organization_details"
-            app:destination="@id/navigation_organization_details" />
     </fragment>
 
 </navigation>
