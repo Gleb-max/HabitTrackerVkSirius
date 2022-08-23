@@ -109,7 +109,6 @@ class RequestDetailsFragment : Fragment() {
 
             intent.putExtra(
                 Intent.EXTRA_TEXT,
-                "Организация: ${binding.organizationName.text}\n" +
                         "Тема заявки: ${binding.requestName.text}\n" +
                         "Адрес организации: ${binding.address.text}\n" +
                         "Подробности: ${binding.description.text}"
@@ -126,10 +125,6 @@ class RequestDetailsFragment : Fragment() {
                 shimmerRequest.visibility = View.GONE
                 constraintRequest.visibility = View.VISIBLE
             }
-        }
-
-        viewModel.organization.observe(viewLifecycleOwner) {
-            if (it != null) binding.organizationName.text = it.name
         }
 
         viewModel.request.observe(viewLifecycleOwner) {

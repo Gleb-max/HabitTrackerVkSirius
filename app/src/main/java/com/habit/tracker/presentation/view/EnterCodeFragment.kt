@@ -65,6 +65,11 @@ class EnterCodeFragment : Fragment() {
         editTextNumber2.setOnKeyListener(GenericKeyEvent(editTextNumber2, editTextNumber))
         editTextNumber3.setOnKeyListener(GenericKeyEvent(editTextNumber3, editTextNumber2))
         editTextNumber4.setOnKeyListener(GenericKeyEvent(editTextNumber4, editTextNumber3))
+
+//        editTextNumber.isFocusable = false
+//        editTextNumber2.isFocusable = false
+//        editTextNumber3.isFocusable = false
+//        editTextNumber4.isFocusable = false
     }
 
     private fun onCodeReady() {
