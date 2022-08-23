@@ -11,6 +11,8 @@ import com.habit.tracker.di.ApplicationScope
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.view.OrganizationFragment
 import com.habit.tracker.presentation.view.OrganizationFragmentDirections
+import com.habit.tracker.presentation.view.RequestDetailsFragment
+import com.habit.tracker.presentation.view.RequestDetailsFragmentDirections
 
 @ApplicationScope
 class MainActivity : AppCompatActivity(),
@@ -43,6 +45,10 @@ class MainActivity : AppCompatActivity(),
 
     override fun onRequestItemClick(organizationId: Int, request: Request) {
         navController.navigate(OrganizationFragmentDirections.actionNavigationOrganizationDetailsToNavigationRequestDetails(organizationId, request.id))
+    }
+
+    override fun onBackFromRequestClick(organizationId: Int) {
+        navController.navigate(RequestDetailsFragmentDirections.actionNavigationRequestDetailsToNavigationOrganizationDetails(organizationId))
     }
 
     override fun onAddNewClick() {

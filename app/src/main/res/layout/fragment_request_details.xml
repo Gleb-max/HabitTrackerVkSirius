@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:id="@+id/back"
+                    android:id="@+id/btnBack"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="14dp"
@@ -60,7 +60,7 @@
                     android:textColor="@color/black"
                     android:textSize="23sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/back"
+                    app:layout_constraintBottom_toBottomOf="@id/btnBack"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <ImageView
@@ -82,7 +82,7 @@
                     android:text="Название заявки"
                     android:textColor="@color/black"
                     android:textSize="23sp"
-                    app:layout_constraintBottom_toBottomOf="@id/back"
+                    app:layout_constraintBottom_toBottomOf="@id/btnBack"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/organizationName" />
 
@@ -145,55 +145,69 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
-        <ToggleButton
-            android:id="@+id/toggleLike"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/toggle_like_selector"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/scrollView2" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:cardElevation="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <ToggleButton
-            android:id="@+id/toggleDislike"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginBottom="23dp"
-            android:background="@drawable/toggle_dislike_selector"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dislikeCount" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/likeCount"
-            android:layout_width="40dp"
-            android:layout_height="39dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="22dp"
-            android:gravity="center"
-            android:text="56"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/toggleLike" />
+                <ToggleButton
+                    android:id="@+id/toggleLike"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginBottom="23dp"
+                    android:background="@drawable/toggle_like_selector"
+                    android:textOff=""
+                    android:textOn=""
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-        <TextView
-            android:id="@+id/dislikeCount"
-            android:layout_width="40dp"
-            android:layout_height="39dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginBottom="22dp"
-            android:gravity="center"
-            android:text="56"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                <ToggleButton
+                    android:id="@+id/toggleDislike"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginBottom="23dp"
+                    android:background="@drawable/toggle_dislike_selector"
+                    android:textOff=""
+                    android:textOn=""
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dislikeCount" />
+
+                <TextView
+                    android:id="@+id/likeCount"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="22dp"
+                    android:gravity="center"
+                    android:text="56"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/toggleLike" />
+
+                <TextView
+                    android:id="@+id/dislikeCount"
+                    android:layout_width="40dp"
+                    android:layout_height="39dp"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginBottom="22dp"
+                    android:gravity="center"
+                    android:text="56"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
