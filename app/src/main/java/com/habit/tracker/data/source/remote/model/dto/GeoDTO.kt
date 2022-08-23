@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class GeoDTO(
     @SerializedName("long")
-    val longitude: Double,
+    val longitude: Float,
     @SerializedName("lat")
-    val latitude: Double,
+    val latitude: Float,
 )
