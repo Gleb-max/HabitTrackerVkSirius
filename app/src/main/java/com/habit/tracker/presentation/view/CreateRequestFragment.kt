@@ -27,7 +27,6 @@ class CreateRequestFragment : Fragment() {
             val photoUri = bundle.getString(SelectPhotoBottomSheetFragment.PHOTO_URI_KEY, "")
             val photoId = bundle.getInt(SelectPhotoBottomSheetFragment.PHOTO_POSITION, 1)
             if (photoUri.isNotBlank()) {
-                Log.e("gtrgtrgrt", photoUri)
                 photos[photoId] = photoUri
                 //todo передалать на live data
                 val v = when (photoId) {

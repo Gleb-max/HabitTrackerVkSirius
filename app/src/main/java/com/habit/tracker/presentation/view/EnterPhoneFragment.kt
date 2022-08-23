@@ -2,7 +2,6 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
-import com.habit.tracker.data.source.local.model.AuthResult
 import com.habit.tracker.databinding.FragmentEnterPhoneBinding
 import com.habit.tracker.presentation.stateholder.AuthViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
@@ -49,14 +47,13 @@ class EnterPhoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
         observeViewModel()
 
         binding.phoneEditText.doOnTextChanged { text, _, _, _ ->
             viewModel.setPhone(text.toString())
         }
         binding.getCodeButton.setOnClickListener {
-            Log.e("ferferfer", "Freferefrfrefrefr")
             viewModel.auth()
         }
     }
@@ -67,7 +64,6 @@ class EnterPhoneFragment : Fragment() {
         }
 
         viewModel.authState.observe(viewLifecycleOwner) {
-//            Log.e("authstate", it?.name.toString())
             val action = when (it) {
                 "code" -> R.id.action_navigation_enter_phone_to_navigation_enter_code
                 "reg" -> R.id.action_navigation_enter_phone_to_navigation_registration

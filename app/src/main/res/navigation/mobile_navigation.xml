@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_navigation_registration_to_navigation_enter_code"
             app:destination="@id/navigation_enter_code" />
+        <action
+            android:id="@+id/action_navigation_registration_to_navigation_enter_phone"
+            app:destination="@id/navigation_enter_phone" />
     </fragment>
 
     <fragment
@@ -110,7 +113,7 @@
         android:id="@+id/navigation_request_details"
         android:name="com.habit.tracker.presentation.view.RequestDetailsFragment"
         android:label="@string/label_request_details"
-        tools:layout="@layout/fragment_request_details" >
+        tools:layout="@layout/fragment_request_details">
         <argument
             android:name="organizationId"
             app:argType="integer" />

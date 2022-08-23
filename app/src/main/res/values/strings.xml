@@ -19,7 +19,7 @@
 
     //titles
     <string name="title_enter_phone">Какой у вас\nномер\nтелефона?</string>
-    <string name="progress_text">с номером %1$s%</string>
+    <string name="title_with_phone">с номером %s</string>
     <string name="are_you_user">Вы уже с нами?</string>
     <string name="login">Войти</string>
     <string name="code_sent">Код был отправлен на номер</string>

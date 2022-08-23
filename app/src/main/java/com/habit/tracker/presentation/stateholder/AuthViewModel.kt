@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.habit.tracker.core.BaseViewModel
 import com.habit.tracker.data.repository.AuthRepository
-import com.habit.tracker.di.ActivityScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -21,13 +20,16 @@ class AuthViewModel @Inject constructor(
     private val _phone = MutableLiveData<String>()
     val phone: LiveData<String> = _phone
 
+    private val _name = MutableLiveData<String>()
+    val name: LiveData<String> = _name
+
+    private val _code = MutableLiveData<String>()
+    val code: LiveData<String> = _code
+
     private val _authState = MutableLiveData<String?>(null)
     val authState: LiveData<String?> = _authState
 
-    var a = 111
-
     init {
-
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.isLoggedIn()
             withContext(Dispatchers.Main) {
@@ -40,11 +42,39 @@ class AuthViewModel @Inject constructor(
         _phone.value = value
     }
 
+    fun setName(value: String) {
+        _name.value = value
+    }
+
+    fun setCode(value: String) {
+        _code.value = value
+    }
+
+    fun clearFields() {
+        _phone.value = ""
+        _name.value = ""
+    }
+
     fun auth() {
         viewModelScope.execute {
             val phone = phone.value
-            a = 222
             _authState.value = repository.auth(phone!!)
+        }
+    }
+
+    fun reg() {
+        viewModelScope.execute {
+            val phone = phone.value
+            val name = name.value
+            _authState.value = repository.reg(phone!!, name!!)
+        }
+    }
+
+    fun login() {
+        viewModelScope.execute {
+            val phone = phone.value
+            val code = code.value
+            _authState.value = repository.login(phone!!, code!!)
         }
     }
 }

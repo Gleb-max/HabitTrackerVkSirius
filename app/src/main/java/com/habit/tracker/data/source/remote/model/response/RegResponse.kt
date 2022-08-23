@@ -5,5 +5,5 @@ import com.habit.tracker.data.source.local.model.RegResult
 
 class RegResponse(
     @SerializedName("result")
-    val result: RegResult
+    val result: String
 )

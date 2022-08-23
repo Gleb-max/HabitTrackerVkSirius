@@ -20,11 +20,11 @@ class AuthRepository @Inject constructor(
         return remoteDataSource.auth(AuthRequest(phone)).result
     }
 
-    suspend fun reg(phone: String, name: String): RegResult {
+    suspend fun reg(phone: String, name: String): String {
         return remoteDataSource.register(RegRequest(phone, name)).result
     }
 
-    suspend fun login(phone: String, code: Int): String? {
+    suspend fun login(phone: String, code: String): String? {
         return remoteDataSource.login(LoginRequest(phone, code)).token
     }
 }

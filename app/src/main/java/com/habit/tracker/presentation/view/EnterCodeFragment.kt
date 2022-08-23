@@ -2,6 +2,7 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,7 +45,7 @@ class EnterCodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
 
         setupCodeField()
     }
@@ -58,11 +59,16 @@ class EnterCodeFragment : Fragment() {
         editTextNumber.addTextChangedListener(GenericTextWatcher(editTextNumber, editTextNumber2))
         editTextNumber2.addTextChangedListener(GenericTextWatcher(editTextNumber2, editTextNumber3))
         editTextNumber3.addTextChangedListener(GenericTextWatcher(editTextNumber3, editTextNumber4))
-        editTextNumber4.addTextChangedListener(GenericTextWatcher(editTextNumber4, null))
+        editTextNumber4.addTextChangedListener(GenericTextWatcher(editTextNumber4, null, this::onCodeReady))
 
         editTextNumber.setOnKeyListener(GenericKeyEvent(editTextNumber, null))
         editTextNumber2.setOnKeyListener(GenericKeyEvent(editTextNumber2, editTextNumber))
         editTextNumber3.setOnKeyListener(GenericKeyEvent(editTextNumber3, editTextNumber2))
         editTextNumber4.setOnKeyListener(GenericKeyEvent(editTextNumber4, editTextNumber3))
+    }
+
+    private fun onCodeReady() {
+        Log.e("frrffrfre", binding.editTextNumber.text.toString() + binding.editTextNumber2.text.toString() + binding.editTextNumber3.text.toString() + binding.editTextNumber4.text.toString())
+
     }
 }

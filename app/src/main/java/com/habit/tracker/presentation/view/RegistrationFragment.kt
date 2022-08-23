@@ -2,12 +2,13 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRegistrationBinding
@@ -44,20 +45,34 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, viewModelFactory)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        )[AuthViewModel::class.java]
+        observeViewModel()
 
-        Log.e("GRgrtrgt", viewModel.a.toString())
-
-        setupClickListeners()
+        binding.fullNameEditText.doOnTextChanged { text, _, _, _ ->
+            text?.let { viewModel.setName(it.toString()) }
+        }
+        binding.tvChangeNumber.setOnClickListener {
+            viewModel.clearFields()
+            findNavController().navigate(R.id.action_navigation_registration_to_navigation_enter_phone)
+        }
+        binding.btnRegister.setOnClickListener {
+            viewModel.reg()
+        }
     }
 
-    private fun setupClickListeners() {
-        val name = binding.fullNameEditText
-
-        binding.btnRegister.setOnClickListener {
-            //todo
-            if (name.length() == 0) {
-                name.error = context?.getString(R.string.require_name_and_surname)
+    private fun observeViewModel() {
+        viewModel.phone.observe(viewLifecycleOwner) {
+            binding.tvPhone.text = getString(R.string.title_with_phone, it)
+        }
+        viewModel.name.observe(viewLifecycleOwner) {
+            binding.btnRegister.isEnabled = it.isNotBlank()
+        }
+        viewModel.authState.observe(viewLifecycleOwner) {
+            when (it) {
+                "code" -> findNavController().navigate(R.id.action_navigation_registration_to_navigation_enter_code)
             }
         }
     }

@@ -3,16 +3,18 @@ package com.habit.tracker.presentation.generics
 import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.habit.tracker.R
 
 class GenericTextWatcher internal constructor(
     private val currentView: View,
-    private val nextView: View?
+    private val nextView: View?,
+    private val cb: (() -> Unit)? = null
 ) :
     TextWatcher {
-    override fun afterTextChanged(editable: Editable) { // TODO Auto-generated method stub
+    override fun afterTextChanged(editable: Editable) {
         val text = editable.toString()
         when (currentView.id) {
             R.id.editTextNumber -> if (text.isNotEmpty()) nextView?.requestFocus()
@@ -22,8 +24,9 @@ class GenericTextWatcher internal constructor(
                 val imm =
                     currentView.context.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
                 imm?.hideSoftInputFromWindow(currentView.windowToken, 0)
+                Log.e("gtrgtgr", "vrgrgrrgt")
+                cb?.invoke()
             }
-            //You can use EditText4 same as above to hide the keyboard
         }
     }
 
@@ -40,7 +43,7 @@ class GenericTextWatcher internal constructor(
         arg1: Int,
         arg2: Int,
         arg3: Int
-    ) { // Auto-generated method stub
+    ) {
     }
 
 }
