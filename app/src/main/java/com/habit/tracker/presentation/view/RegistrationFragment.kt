@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.habit.tracker.R
 import com.habit.tracker.databinding.FragmentRegistrationBinding
 
 class RegistrationFragment : Fragment() {
@@ -29,7 +30,7 @@ class RegistrationFragment : Fragment() {
         binding.btnRegister.setOnClickListener {
             //todo
             if (name.length() == 0) {
-                name.error = "Необходимы имя и фамилия"
+                name.error = context?.getString(R.string.require_name_and_surname)
             }
         }
     }

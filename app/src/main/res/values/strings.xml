@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Habit Tracker</string>
+    <string name="app_name">Dear Friend</string>
 
     <string name="statements">Заведение</string>
     <string name="about_me">О себе:</string>
@@ -15,6 +15,7 @@
     <string name="label_registration">Регистрация</string>
     <string name="label_enter_phone">Ввод телефона</string>
     <string name="label_enter_code">Ввод кода</string>
+    <string name="label_require_geo">Мы не сможем показать организации без твоего местоположения</string>
 
     //titles
     <string name="title_enter_phone">Какой у вас\nномер\nтелефона?</string>
@@ -37,6 +38,9 @@
     <string name="search_description">Поиск</string>
     <string name="add_description">Создать</string>
 
+    //errors
+    <string name="require_name_and_surname">Необходимы имя и фамилия</string>
+
     //tokens
     <string name="mapbox_access_token" translatable="false">pk.eyJ1IjoiZ2xlYi1tYXgiLCJhIjoiY2w1bTM0b2xjMDVmMjNicDhncjJwbGo3dSJ9.e196gGMK3Q57AXei-2YVBA</string>
 
@@ -49,4 +53,7 @@
     <string name="create_request">Создать заявку</string>
     <string name="create_request_button">Создать</string>
     <string name="no_internet_description">Ошибка соединения с интернетом.\nПроверьте подключение</string>
+    <string name="confirmation_code">Код подтверждения</string>
+    <string name="resend_code">Получить новый код через</string>
+    <string name="invalid_code">Неверный код!</string>
 </resources>

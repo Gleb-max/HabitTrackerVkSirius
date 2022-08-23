@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +8,6 @@
     android:paddingVertical="90dp"
     android:weightSum="2"
     tools:context=".presentation.view.EnterCodeFragment">
-
 
     <TextView
         android:id="@+id/appNameTop"
@@ -26,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:gravity="center"
-        android:text="Код подтверждения"
+        android:text="@string/confirmation_code"
         android:textColor="@color/black"
         android:textSize="24sp" />
 
@@ -44,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="+78382432785"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        tools:text="+78382432785" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/changeNumber"
@@ -122,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Неверный код!"
+        android:text="@string/invalid_code"
         android:textColor="@android:color/holo_red_light"
         android:textSize="23sp"
         android:visibility="invisible" />
@@ -133,7 +131,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="39dp"
         android:gravity="center"
-        android:text="Получить новый код через"
+        android:text="@string/resend_code"
         android:textColor="@color/black"
         android:textSize="18sp" />
 
@@ -143,8 +141,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:gravity="center"
-        android:text="00:00"
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        tools:text="00:00" />
 
 </LinearLayout>

@@ -61,7 +61,7 @@ class MapFragment : Fragment() {
         binding.mapView.gestures.focalPoint = binding.mapView.getMapboxMap().pixelForCoordinate(it)
     }
 
-    val requestPermissionLauncher = registerForActivityResult(
+    private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted ->
         if (isGranted) {
@@ -69,7 +69,7 @@ class MapFragment : Fragment() {
         } else {
             Toast.makeText(
                 requireActivity(),
-                "Мы не сможем показать карту мероприятия без твоего местоположения",
+                context?.getString(R.string.label_require_geo),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -108,7 +108,6 @@ class MapFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.organizations.observe(viewLifecycleOwner) {
-            Log.e("gtrgrtgtr", it.toString())
             for (org in it) addOrganizationMarkerToMap(org)
         }
     }
@@ -146,9 +145,9 @@ class MapFragment : Fragment() {
     private fun addOrganizationMarkerToMap(organization: Organization) {
         val geo = organization.geo
         activity?.let {
-            AppCompatResources.getDrawable(it, R.drawable.ic_baseline_location_on_24)?.toBitmap(100, 100)
+            AppCompatResources.getDrawable(it, R.drawable.ic_baseline_location_on_24)
+                ?.toBitmap(100, 100)
                 ?.let { b ->
-                    Log.e("grer", ":gregrg")
                     val annotationApi = binding.mapView.annotations
                     val pointAnnotationManager =
                         annotationApi.createPointAnnotationManager(binding.mapView)
@@ -224,30 +223,30 @@ class MapFragment : Fragment() {
 
     private fun seekBarTracker(view: View) {
         val seekBar = view.findViewById<SeekBar>(R.id.seek_bar_filter)
-            val seekNum = view.findViewById<TextView>(R.id.seek_num)
+        val seekNum = view.findViewById<TextView>(R.id.seek_num)
 
-            var startPoint = 0
-            var endPoint = 100
+        var startPoint = 0
+        var endPoint = 100
 
-            seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                    seekNum.text = p1.toString()
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                seekNum.text = p1.toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+                if (seekBar != null) {
+                    startPoint = seekBar.progress
                 }
+            }
 
-                override fun onStartTrackingTouch(p0: SeekBar?) {
-                    if (seekBar != null) {
-                        startPoint = seekBar.progress
-                    }
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+                if (seekBar != null) {
+                    endPoint = seekBar.progress
                 }
+            }
 
-                override fun onStopTrackingTouch(p0: SeekBar?) {
-                    if (seekBar != null) {
-                        endPoint = seekBar.progress
-                    }
-                }
-
-            })
-        }
+        })
+    }
 
     override fun onDestroyView() {
         onCameraTrackingDismissed()

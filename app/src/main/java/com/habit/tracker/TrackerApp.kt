@@ -1,6 +1,5 @@
 package com.habit.tracker
 
-//import android.support.multidex.MultiDexApplication
 import androidx.multidex.MultiDexApplication
 import com.habit.tracker.di.DaggerApplicationComponent
 
