@@ -2,20 +2,12 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.FileProvider
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,10 +18,6 @@ import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRequestDetailsBinding
 import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.*
 import javax.inject.Inject
 
 class RequestDetailsFragment : Fragment() {
@@ -64,6 +52,7 @@ class RequestDetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+//        enterTransition = Slide()
         _binding = FragmentRequestDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
