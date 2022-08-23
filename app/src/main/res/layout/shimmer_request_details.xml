@@ -53,28 +53,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/requestNameShimmer"
-                android:layout_width="186dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="118dp"
-                android:textColor="@color/black"
-                android:textSize="23sp"
-                android:background="@color/shimmer_color"
-                app:layout_constraintBottom_toBottomOf="@id/backShimmer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/organizationNameShimmer" />
-
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/photoShimmer"
                 android:layout_width="0dp"
                 android:layout_height="130dp"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="183dp"
+                android:layout_marginTop="113dp"
                 android:layout_marginEnd="24dp"
-                android:scaleType="centerInside"
                 android:background="@color/shimmer_color"
+                android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
