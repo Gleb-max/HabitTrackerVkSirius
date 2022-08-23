@@ -1,12 +1,21 @@
 package com.habit.tracker.presentation.view
 
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.FileProvider
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
@@ -16,6 +25,10 @@ import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRequestDetailsBinding
 import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.util.*
 import javax.inject.Inject
 
 class RequestDetailsFragment : Fragment() {
@@ -56,7 +69,6 @@ class RequestDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         shimmerRequest = binding.shimmerRequest
         shimmerRequest.startShimmer()
 
@@ -68,6 +80,8 @@ class RequestDetailsFragment : Fragment() {
         val like = binding.toggleLike
         val dislike = binding.toggleDislike
         val carousel = binding.carouselView
+        val share = binding.share
+        val btnBack = binding.btnBack
 
         // todo: подставить картинки с бэка
         val sampleImages = intArrayOf(
@@ -88,8 +102,27 @@ class RequestDetailsFragment : Fragment() {
         like.setOnClickListener {
             if (like.isChecked) dislike.isChecked = false
         }
+
         dislike.setOnClickListener {
             if (dislike.isChecked) like.isChecked = false
+        }
+
+        btnBack.setOnClickListener {
+            onRequestActionsListener.onBackFromRequestClick(args.organizationId)
+        }
+
+        share.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.type = "text/plain"
+
+            intent.putExtra(Intent.EXTRA_TEXT,
+                "Организация: ${binding.organizationName.text}\n" +
+                        "Тема заявки: ${binding.requestName.text}\n" +
+                        "Адрес организации: ${binding.address.text}\n" +
+                        "Подробности: ${binding.description.text}")
+
+            startActivity(Intent.createChooser(intent, "Поделиться"))
         }
     }
 

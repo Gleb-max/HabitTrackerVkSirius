@@ -130,6 +130,8 @@ class OrganizationFragment : Fragment() {
 
         fun onRequestItemClick(organizationId: Int, request: Request)
 
+        fun onBackFromRequestClick(organizationId: Int)
+
         fun onAddNewClick()
     }
 }
