@@ -87,19 +87,33 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/organizationName" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/photo"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardViewCarousel"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="126dp"
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="183dp"
+                    app:cardCornerRadius="10dp"
                     android:layout_marginEnd="24dp"
-                    android:scaleType="centerInside"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/shape_round"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:layout_constraintTop_toTopOf="parent">
+                    <com.synnapps.carouselview.CarouselView
+                        android:id="@+id/carouselView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:fillColor="#FFFFFFFF"
+                        app:pageColor="#00000000"
+                        android:scaleType="centerInside"
+                        app:radius="6dp"
+                        app:autoPlay="false"
+                        app:slideInterval="3000"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strokeColor="#FF777777"
+                        app:strokeWidth="1dp"/>
+                </androidx.cardview.widget.CardView>
 
                 <TextView
                     android:id="@+id/address"
@@ -110,9 +124,9 @@
                     android:textColor="#636363"
                     android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="@id/photo"
-                    app:layout_constraintStart_toStartOf="@id/photo"
-                    app:layout_constraintTop_toBottomOf="@+id/photo" />
+                    app:layout_constraintEnd_toEndOf="@id/cardViewCarousel"
+                    app:layout_constraintStart_toStartOf="@id/cardViewCarousel"
+                    app:layout_constraintTop_toBottomOf="@+id/cardViewCarousel" />
 
                 <TextView
                     android:id="@+id/description"

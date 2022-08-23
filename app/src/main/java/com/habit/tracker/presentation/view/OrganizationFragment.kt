@@ -39,10 +39,6 @@ class OrganizationFragment : Fragment() {
 
     private val args by navArgs<OrganizationFragmentArgs>()
 
-    private val organizationId by lazy {
-        args.organizationId
-    }
-
     override fun onAttach(context: Context) {
         component.inject(this)
         super.onAttach(context)
@@ -87,7 +83,7 @@ class OrganizationFragment : Fragment() {
                 onRequestListActionsListener.onRequestItemClick(args.organizationId, request)
             }
         }
-        requestListAdapter.applyOrganizationId(organizationId)
+
         with(binding.rvRequestList) {
             adapter = requestListAdapter
         }
