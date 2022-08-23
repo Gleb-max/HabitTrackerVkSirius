@@ -52,7 +52,7 @@
     <string name="title_get_photo_gallery">Выбрать из галереи</string>
     <string name="create_request">Создать заявку</string>
     <string name="create_request_button">Создать</string>
-    <string name="no_internet_description">Ошибка соединения с интернетом.\nПроверьте ваше интернет соединение</string>
+    <string name="no_internet_description">Ошибка соединения с интернетом.\nПроверьте подключение</string>
     <string name="confirmation_code">Код подтверждения</string>
     <string name="resend_code">Получить новый код через</string>
     <string name="invalid_code">Неверный код!</string>

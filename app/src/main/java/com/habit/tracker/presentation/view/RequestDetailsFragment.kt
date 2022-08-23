@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.facebook.shimmer.Shimmer
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRequestDetailsBinding
 import com.habit.tracker.domain.entity.Request
@@ -62,6 +63,7 @@ class RequestDetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         shimmerRequest = binding.shimmerRequest
         shimmerRequest.startShimmer()
 
@@ -72,6 +74,20 @@ class RequestDetailsFragment : Fragment() {
 
         val like = binding.toggleLike
         val dislike = binding.toggleDislike
+        val carousel = binding.carouselView
+
+        // todo: подставить картинки с бэка
+        val sampleImages = intArrayOf(
+            R.drawable.maxresdefault,
+            R.drawable.maxresdefault,
+            R.drawable.maxresdefault,
+            R.drawable.maxresdefault
+        )
+
+        carousel.setImageListener { position, imageView ->
+            imageView.setImageResource(sampleImages[position])
+        }
+        carousel.pageCount = sampleImages.size
 
         observeViewModel()
         viewModel.loadRequestDetailData(args.organizationId, args.requestId)

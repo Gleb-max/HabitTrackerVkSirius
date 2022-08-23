@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBinding
 import com.habit.tracker.domain.entity.Request
@@ -33,6 +34,8 @@ class OrganizationFragment : Fragment() {
     private lateinit var requestListAdapter: RequestListAdapter
 
     private lateinit var onRequestListActionsListener: OnRequestListActionsListener
+
+    private lateinit var shimmerOrganization: ShimmerFrameLayout
 
     private val args by navArgs<OrganizationFragmentArgs>()
 
@@ -61,6 +64,9 @@ class OrganizationFragment : Fragment() {
         observeViewModel()
         viewModel.loadOrganizationData(args.organizationId)
 
+        shimmerOrganization = binding.shimmerOrganization
+        shimmerOrganization.startShimmer()
+
         binding.fabAddRequest.setOnClickListener {
             onRequestListActionsListener.onAddNewClick()
         }
@@ -77,6 +83,7 @@ class OrganizationFragment : Fragment() {
                 onRequestListActionsListener.onRequestItemClick(args.organizationId, request)
             }
         }
+
         with(binding.rvRequestList) {
             adapter = requestListAdapter
         }
@@ -90,16 +97,23 @@ class OrganizationFragment : Fragment() {
         }
 
         viewModel.requests.observe(viewLifecycleOwner) {
-            requestListAdapter.submitList(it)
-            viewState(false)
+            if (it != null) {
+                requestListAdapter.submitList(it)
+            }
         }
 
-        viewModel.isLoading.observe(viewLifecycleOwner) {
-            binding.progressBar.isVisible = it
+        viewModel.shimmerCloseNeeded.observe(viewLifecycleOwner) {
+            if (it != null) {
+                shimmerOrganization.stopShimmer()
+                shimmerOrganization.visibility = View.GONE
+                viewState(false)
+            }
         }
 
         viewModel.isError.observe(viewLifecycleOwner) {
-            viewState(it)
+            if (it != null) {
+                viewState(it)
+            }
         }
     }
 

@@ -10,13 +10,6 @@ class RequestListAdapter : ListAdapter<Request, RequestItemViewHolder>(RequestIt
 
     var onRequestItemClickListener: ((Request) -> Unit)? = null
 
-    // todo почему nullable?
-    var organizationId: Int? = null
-
-    fun applyOrganizationId(orgId: Int) {
-        organizationId = orgId
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestItemViewHolder {
         val binding = LayoutRequestCardBinding.inflate(
             LayoutInflater.from(parent.context),
