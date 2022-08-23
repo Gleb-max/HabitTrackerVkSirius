@@ -157,7 +157,7 @@ class MapFragment : Fragment() {
                     })
                     val pointAnnotationOptions: PointAnnotationOptions =
                         PointAnnotationOptions()
-                            .withPoint(Point.fromLngLat(geo.long, geo.lat))
+                            .withPoint(Point.fromLngLat(geo.long.toDouble(), geo.lat.toDouble()))
                             .withIconImage(b)
                     pointAnnotationManager.create(pointAnnotationOptions)
                 }

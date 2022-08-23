@@ -2,6 +2,7 @@ package com.habit.tracker.di
 
 import com.google.gson.GsonBuilder
 import com.habit.tracker.data.repository.RequestRepositoryImpl
+import com.habit.tracker.data.source.remote.api.AuthApi
 import com.habit.tracker.data.source.remote.api.RequestsApi
 import com.habit.tracker.data.source.remote.interceptor.AuthHeaderInterceptor
 import com.habit.tracker.data.source.remote.interceptor.RetryInterceptor
@@ -30,7 +31,7 @@ interface DataModule {
         @ApplicationScope
         fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor {
             return HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BASIC
+                level = HttpLoggingInterceptor.Level.BODY
             }
         }
 
@@ -79,6 +80,12 @@ interface DataModule {
         @ApplicationScope
         fun provideRequestApi(retrofit: Retrofit): RequestsApi {
             return retrofit.create(RequestsApi::class.java)
+        }
+
+        @Provides
+        @ApplicationScope
+        fun provideAuthApi(retrofit: Retrofit): AuthApi {
+            return retrofit.create(AuthApi::class.java)
         }
     }
 }

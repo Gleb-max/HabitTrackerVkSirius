@@ -3,7 +3,6 @@ package com.habit.tracker.di
 import androidx.lifecycle.ViewModel
 import com.habit.tracker.presentation.stateholder.MapViewModel
 import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
-import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -25,4 +24,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(RequestDetailsViewModel::class)
     fun bindRequestDetailsViewModel(viewModel: RequestDetailsViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AuthViewModel::class)
+    fun bindAuthViewModel(viewModel: AuthViewModel): ViewModel
 }

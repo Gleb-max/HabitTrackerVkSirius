@@ -1,12 +1,11 @@
 package com.habit.tracker.di
 
 import android.app.Application
-import com.habit.tracker.presentation.view.OrganizationFragment
+import com.habit.tracker.presentation.view.OrganizationBottomSheetFragment
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.presentation.MainActivity
 import com.habit.tracker.presentation.view.MapFragment
 import com.habit.tracker.presentation.view.ProfileFragment
-import com.habit.tracker.presentation.view.RequestDetailsFragment
 import dagger.BindsInstance
 import dagger.Component
 
@@ -30,6 +29,14 @@ interface ApplicationComponent {
     fun inject(organizationFragment: OrganizationFragment)
 
     fun inject(requestDetailsFragment: RequestDetailsFragment)
+
+    fun inject(splashFragment: SplashFragment)
+
+    fun inject(enterPhoneFragment: EnterPhoneFragment)
+
+    fun inject(enterCodeFragment: EnterCodeFragment)
+
+    fun inject(registrationFragment: RegistrationFragment)
 
     @Component.Factory
     interface Factory {
