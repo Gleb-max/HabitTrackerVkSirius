@@ -7,6 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.habit.tracker.R
+import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRegistrationBinding
 import com.habit.tracker.presentation.stateholder.AuthViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory

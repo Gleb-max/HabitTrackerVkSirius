@@ -12,7 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class OrganizationBottomSheetViewModel @Inject constructor(
+class OrganizationViewModel @Inject constructor(
     private val getOrganizationUseCase: GetOrganizationUseCase,
     private val getRequestListUseCase: GetRequestListUseCase
 ) : BaseViewModel() {

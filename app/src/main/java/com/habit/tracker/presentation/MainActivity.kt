@@ -7,10 +7,12 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.habit.tracker.R
 import com.habit.tracker.databinding.ActivityMainBinding
+import com.habit.tracker.di.ApplicationScope
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.presentation.view.OrganizationFragment
 import com.habit.tracker.presentation.view.OrganizationFragmentDirections
 
+@ApplicationScope
 class MainActivity : AppCompatActivity(),
     OrganizationFragment.OnRequestListActionsListener {
 

@@ -1,8 +1,10 @@
 package com.habit.tracker.di
 
 import androidx.lifecycle.ViewModel
+import com.habit.tracker.presentation.stateholder.AuthViewModel
 import com.habit.tracker.presentation.stateholder.MapViewModel
-import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
+import com.habit.tracker.presentation.stateholder.OrganizationViewModel
+import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -17,8 +19,8 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(OrganizationBottomSheetViewModel::class)
-    fun bindOrganizationBottomSheetViewModel(viewModel: OrganizationBottomSheetViewModel): ViewModel
+    @ViewModelKey(OrganizationViewModel::class)
+    fun bindOrganizationViewModel(viewModel: OrganizationViewModel): ViewModel
 
     @Binds
     @IntoMap

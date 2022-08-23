@@ -1,11 +1,9 @@
 package com.habit.tracker.di
 
 import android.app.Application
-import com.habit.tracker.presentation.view.OrganizationBottomSheetFragment
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.presentation.MainActivity
-import com.habit.tracker.presentation.view.MapFragment
-import com.habit.tracker.presentation.view.ProfileFragment
+import com.habit.tracker.presentation.view.*
 import dagger.BindsInstance
 import dagger.Component
 

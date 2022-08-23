@@ -13,7 +13,7 @@ import com.facebook.shimmer.ShimmerFrameLayout
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentOrganizationBinding
 import com.habit.tracker.domain.entity.Request
-import com.habit.tracker.presentation.stateholder.OrganizationBottomSheetViewModel
+import com.habit.tracker.presentation.stateholder.OrganizationViewModel
 import com.habit.tracker.presentation.stateholder.ViewModelFactory
 import com.habit.tracker.presentation.view.adapter.RequestListAdapter
 import javax.inject.Inject
@@ -26,7 +26,7 @@ class OrganizationFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-    private lateinit var viewModel: OrganizationBottomSheetViewModel
+    private lateinit var viewModel: OrganizationViewModel
     private val component by lazy {
         (requireActivity().application as TrackerApp).component
     }
@@ -58,7 +58,7 @@ class OrganizationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel =
-            ViewModelProvider(this, viewModelFactory)[OrganizationBottomSheetViewModel::class.java]
+            ViewModelProvider(this, viewModelFactory)[OrganizationViewModel::class.java]
 
         setupRecyclerView()
         observeViewModel()

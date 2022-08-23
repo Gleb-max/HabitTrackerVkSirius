@@ -1,12 +1,11 @@
 package com.habit.tracker.presentation.stateholder
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.habit.tracker.core.BaseViewModel
 import com.habit.tracker.data.repository.AuthRepository
-import com.habit.tracker.di.ApplicationScope
+import com.habit.tracker.di.ActivityScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
