@@ -31,23 +31,27 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
 
     private val getPhotoGallery =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-            setFragmentResult(
-                REQUEST_KEY, bundleOf(
-                    PHOTO_URI_KEY to uri.toString(),
-                    PHOTO_POSITION to args.photoPosition
+            if (uri != null) {
+                setFragmentResult(
+                    REQUEST_KEY, bundleOf(
+                        PHOTO_URI_KEY to uri.toString(),
+                        PHOTO_POSITION to args.photoPosition
+                    )
                 )
-            )
+            }
             dismiss()
         }
 
     private val getPhotoCamera =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { ok: Boolean ->
-            setFragmentResult(
-                REQUEST_KEY, bundleOf(
-                    PHOTO_URI_KEY to if (ok) url else "",
-                    PHOTO_POSITION to args.photoPosition
+            if (ok) {
+                setFragmentResult(
+                    REQUEST_KEY, bundleOf(
+                        PHOTO_URI_KEY to if (ok) url else "",
+                        PHOTO_POSITION to args.photoPosition
+                    )
                 )
-            )
+            }
             dismiss()
         }
 
