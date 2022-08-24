@@ -103,6 +103,7 @@ class EnterCodeFragment : Fragment() {
                 binding.editTextNumber3.text.toString() +
                 binding.editTextNumber4.text.toString()
         viewModel.setCode(code)
+        binding.indicatorCode.visibility = View.VISIBLE
         viewModel.login()
     }
 }

@@ -9,6 +9,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.button.MaterialButton
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRegistrationBinding
@@ -25,6 +26,7 @@ class RegistrationFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: AuthViewModel
+    private lateinit var nameButton: MaterialButton
     private val component by lazy {
         (requireActivity().application as TrackerApp).component
     }
@@ -45,6 +47,9 @@ class RegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val progressBar = binding.progressIndicatorEnterName
+        nameButton = binding.btnRegister
+
         viewModel = ViewModelProvider(
             requireActivity(),
             viewModelFactory
@@ -58,7 +63,9 @@ class RegistrationFragment : Fragment() {
             viewModel.clearFields()
             findNavController().navigate(R.id.action_navigation_registration_to_navigation_enter_phone)
         }
-        binding.btnRegister.setOnClickListener {
+        nameButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            nameButton.isEnabled = false
             viewModel.reg()
         }
     }
