@@ -79,7 +79,6 @@ class RequestDetailsFragment : Fragment() {
             R.drawable.maxresdefault,
             R.drawable.maxresdefault,
             R.drawable.maxresdefault,
-            R.drawable.maxresdefault
         )
 
         carousel.setImageListener { position, imageView ->
