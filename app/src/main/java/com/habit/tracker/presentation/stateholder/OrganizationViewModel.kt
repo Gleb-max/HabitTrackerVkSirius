@@ -8,8 +8,6 @@ import com.habit.tracker.domain.entity.Organization
 import com.habit.tracker.domain.entity.Request
 import com.habit.tracker.domain.usecase.GetOrganizationUseCase
 import com.habit.tracker.domain.usecase.GetRequestListUseCase
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class OrganizationViewModel @Inject constructor(
@@ -30,21 +28,16 @@ class OrganizationViewModel @Inject constructor(
     val requests: LiveData<List<Request>> = _requests
 
     fun loadOrganizationData(organizationId: Int) {
-        viewModelScope.execute(onSuccess = {
-            viewModelScope.launch {
+        viewModelScope.execute(
+            onSuccess = {
                 _shimmerCloseNeeded.value = true
-            }
-        }, onError = {
-            viewModelScope.launch {
-                delay(2000)
+            },
+            onError = {
                 _isError.value = true
             }
-        },
-           function = {
-                _requests.value = getRequestListUseCase(organizationId)
-                _organization.value = getOrganizationUseCase(organizationId)
-            }
-        )
-
+        ) {
+            _requests.postValue(getRequestListUseCase(organizationId))
+            _organization.postValue(getOrganizationUseCase(organizationId))
+        }
     }
 }

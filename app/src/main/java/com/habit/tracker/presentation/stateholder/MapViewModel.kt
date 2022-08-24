@@ -17,7 +17,7 @@ class MapViewModel @Inject constructor(
 
     init {
         viewModelScope.execute {
-            _organizations.value = getOrganizationListUseCase()
+            _organizations.postValue(getOrganizationListUseCase())
         }
     }
 }

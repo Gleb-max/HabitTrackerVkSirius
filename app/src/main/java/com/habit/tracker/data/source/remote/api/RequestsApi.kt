@@ -1,15 +1,10 @@
 package com.habit.tracker.data.source.remote.api
 
-import com.habit.tracker.data.source.remote.model.response.OrganizationListResponse
-import com.habit.tracker.data.source.remote.model.response.OrganizationResponse
-import com.habit.tracker.data.source.remote.model.response.RequestListResponse
-import com.habit.tracker.data.source.remote.model.response.RequestResponse
+import com.habit.tracker.data.source.remote.model.response.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface RequestsApi {
-
-    //todo: add routes
 
     //todo: add filters or getting by region
     @GET("organizations")
@@ -26,4 +21,7 @@ interface RequestsApi {
         @Path("organization_id") organizationId: Int,
         @Path("request_id") requestId: Int
     ): RequestResponse
+
+    @GET("profile")
+    suspend fun fetchProfile(): ProfileResponse
 }
