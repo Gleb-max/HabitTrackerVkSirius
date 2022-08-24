@@ -8,13 +8,25 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="40dp">
+        android:paddingTop="0dp">
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/progress_indicator_create_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminateOnly="true"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/tvLabelRequest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="40dp"
             android:text="@string/create_request"
             android:textColor="@color/black"
             android:textSize="36sp"
@@ -25,11 +37,15 @@
             android:id="@+id/card_photo_1"
             android:layout_width="match_parent"
             android:layout_height="162dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
             app:cardBackgroundColor="@color/light_gray"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvLabelRequest"
             app:strokeColor="@android:color/darker_gray"
             app:strokeWidth="2dp">
@@ -48,9 +64,13 @@
             android:id="@+id/ll_bottom_photos"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_photo_1">
 
             <com.google.android.material.card.MaterialCardView
@@ -124,7 +144,9 @@
             android:id="@+id/et_title"
             android:layout_width="0dp"
             android:layout_height="44dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/edit_text"
             android:hint="Заголовок"
             android:maxLines="1"
@@ -138,7 +160,9 @@
             android:id="@+id/et_description"
             android:layout_width="0dp"
             android:layout_height="140dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/edit_text"
             android:gravity="top"
             android:hint="Описание"
@@ -154,8 +178,9 @@
             android:id="@+id/btn_create"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="20dp"
-            android:layout_marginBottom="80dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/auth_button_shape"
             android:padding="8dp"
             android:text="@string/create_request_button"
@@ -163,9 +188,9 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             app:cornerRadius="13dp"
-            app:shapeAppearance="@drawable/auth_button_shape"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_description" />
+            app:layout_constraintTop_toBottomOf="@id/et_description"
+            app:shapeAppearance="@drawable/auth_button_shape" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

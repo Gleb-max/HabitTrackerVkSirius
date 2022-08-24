@@ -72,7 +72,9 @@ class CreateRequestFragment : Fragment() {
                 text?.let { viewModel.setDescription(it.toString()) }
             }
             btnCreate.setOnClickListener {
-                viewModel.createRequest(args.organizationId)
+                binding.progressIndicatorCreateRequest.visibility = View.VISIBLE
+                btnCreate.isEnabled = false
+                viewModel.createRequest(args.organizationId, requireContext())
             }
         }
         setupPhotoCards()
