@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentProfileBinding
 import com.habit.tracker.presentation.stateholder.ProfileViewModel
@@ -24,6 +26,7 @@ class ProfileFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: ProfileViewModel
+    private lateinit var shimmerProfile: ShimmerFrameLayout
     private val component by lazy {
         (requireActivity().application as TrackerApp).component
     }
@@ -44,6 +47,9 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        shimmerProfile = binding.shimmerProfile
+        shimmerProfile.startShimmer()
+
         viewModel = ViewModelProvider(
             this, viewModelFactory
         )[ProfileViewModel::class.java]
@@ -51,6 +57,22 @@ class ProfileFragment : Fragment() {
     }
 
     private fun observeViewModel() {
+
+        viewModel.shimmerCloseNeeded.observe(viewLifecycleOwner) {
+            if (it != null) {
+                shimmerProfile.stopShimmer()
+                shimmerProfile.visibility = View.GONE
+                binding.profileView.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.isErrorProfile.observe(viewLifecycleOwner) {
+            if (it != null) {
+                Toast.makeText(requireContext(), "Не удалось загрузить профиль",
+                    Toast.LENGTH_LONG).show()
+            }
+        }
+
         viewModel.profile.observe(viewLifecycleOwner) {
             if (it != null) {
                 with(binding) {

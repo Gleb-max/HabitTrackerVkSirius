@@ -15,9 +15,20 @@ class ProfileViewModel @Inject constructor(
     private val _profile = MutableLiveData<Profile?>()
     val profile: LiveData<Profile?> = _profile
 
+    private val _isErrorProfile = MutableLiveData<Boolean?>()
+    var isErrorProfile: LiveData<Boolean?> = _isErrorProfile
+
+    private val _shimmerCloseNeeded = MutableLiveData<Boolean?>()
+    var shimmerCloseNeeded: LiveData<Boolean?> = _shimmerCloseNeeded
+
+
     init {
-        viewModelScope.execute {
+        viewModelScope.execute(onError = {
+            _isErrorProfile.value = true
+        },
+        ) {
             _profile.postValue(getProfileUseCase())
+            _shimmerCloseNeeded.postValue(true)
         }
     }
 }
