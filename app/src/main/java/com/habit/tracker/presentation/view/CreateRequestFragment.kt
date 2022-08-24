@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
@@ -74,7 +75,7 @@ class CreateRequestFragment : Fragment() {
             btnCreate.setOnClickListener {
                 binding.progressIndicatorCreateRequest.visibility = View.VISIBLE
                 btnCreate.isEnabled = false
-                viewModel.createRequest(args.organizationId, requireContext())
+                viewModel.createRequest(args.organizationId)
             }
         }
         setupPhotoCards()
@@ -104,6 +105,23 @@ class CreateRequestFragment : Fragment() {
                             .transition(withCrossFade()).centerCrop().into(photoViews[i])
                     }
                 }
+            }
+        }
+        viewModel.isError.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(context, getString(R.string.create_request_error), Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+        viewModel.isSuccess.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(
+                    context,
+                    getString(R.string.create_request_success),
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                findNavController().navigateUp()
             }
         }
     }

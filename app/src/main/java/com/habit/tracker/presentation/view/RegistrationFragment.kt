@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -66,7 +67,7 @@ class RegistrationFragment : Fragment() {
         nameButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             nameButton.isEnabled = false
-            viewModel.reg(requireContext())
+            viewModel.reg()
         }
     }
 
@@ -80,6 +81,14 @@ class RegistrationFragment : Fragment() {
         viewModel.authState.observe(viewLifecycleOwner) {
             when (it) {
                 "code" -> findNavController().navigate(R.id.action_navigation_registration_to_navigation_enter_code)
+            }
+        }
+        viewModel.isError.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(
+                    context, getString(R.string.cant_register),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

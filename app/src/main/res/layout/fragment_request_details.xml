@@ -95,7 +95,6 @@
                         android:id="@+id/carouselView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="fitCenter"
                         app:autoPlay="false"
                         app:fillColor="@color/dark_green"
                         app:layout_constraintEnd_toEndOf="parent"

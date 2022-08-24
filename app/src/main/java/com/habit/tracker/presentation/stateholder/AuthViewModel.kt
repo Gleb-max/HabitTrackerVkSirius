@@ -1,7 +1,5 @@
 package com.habit.tracker.presentation.stateholder
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -17,6 +15,9 @@ class AuthViewModel @Inject constructor(
 
     private val _isLoggedIn = MutableLiveData<Boolean?>(null)
     val isLoggedIn: LiveData<Boolean?> = _isLoggedIn
+
+    private val _isError = MutableLiveData(false)
+    val isError: LiveData<Boolean> = _isError
 
     private val _phone = MutableLiveData<String>()
     val phone: LiveData<String> = _phone
@@ -51,13 +52,13 @@ class AuthViewModel @Inject constructor(
 
     fun clearFields() {
         _authState.value = ""
+        _isError.value = true
     }
 
-    fun auth(context: Context) {
+    fun auth() {
         viewModelScope.execute(
             onError = {
-                Toast.makeText(context, "Не удалось войти :(",
-                    Toast.LENGTH_LONG).show()
+                _isError.value = true
             }
         ) {
             val phone = phone.value
@@ -65,11 +66,10 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun reg(context: Context) {
+    fun reg() {
         viewModelScope.execute(
             onError = {
-                Toast.makeText(context, "Не удалось создать аккаунт :(",
-                    Toast.LENGTH_LONG).show()
+                _isError.value = true
             }
         ) {
             val phone = phone.value
@@ -78,11 +78,10 @@ class AuthViewModel @Inject constructor(
         }
     }
 
-    fun login(context: Context) {
+    fun login() {
         viewModelScope.execute(
             onError = {
-                Toast.makeText(context, "Не удалось создать аккаунт :(",
-                    Toast.LENGTH_LONG).show()
+                _isError.value = true
             }
         ) {
             val phone = phone.value

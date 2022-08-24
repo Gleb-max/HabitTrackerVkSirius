@@ -1,11 +1,11 @@
 package com.habit.tracker.presentation.view
 
 import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -27,7 +27,7 @@ class EnterPhoneFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: AuthViewModel
-    private lateinit var codeButton : MaterialButton
+    private lateinit var codeButton: MaterialButton
     private val component by lazy {
         (requireActivity().application as TrackerApp).component
     }
@@ -53,7 +53,8 @@ class EnterPhoneFragment : Fragment() {
         val progressBar = binding.progressIndicatorEnterPhone
         codeButton = binding.getCodeButton
 
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
+        viewModel =
+            ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
         observeViewModel()
 
         binding.phoneEditText.doOnTextChanged { text, _, _, _ ->
@@ -62,7 +63,7 @@ class EnterPhoneFragment : Fragment() {
         codeButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             codeButton.isEnabled = false
-            viewModel.auth(requireContext())
+            viewModel.auth()
         }
     }
 
@@ -70,7 +71,6 @@ class EnterPhoneFragment : Fragment() {
         viewModel.phone.observe(viewLifecycleOwner) {
             codeButton.isEnabled = it.matches(phoneRegex)
         }
-
         viewModel.authState.observe(viewLifecycleOwner) {
             val action = when (it) {
                 "code" -> R.id.action_navigation_enter_phone_to_navigation_enter_code
@@ -79,6 +79,14 @@ class EnterPhoneFragment : Fragment() {
             }
             if (action != null) {
                 findNavController().navigate(action)
+            }
+        }
+        viewModel.isError.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(
+                    context, getString(R.string.create_request_success),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

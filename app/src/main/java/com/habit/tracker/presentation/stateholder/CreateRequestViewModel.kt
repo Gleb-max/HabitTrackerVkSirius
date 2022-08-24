@@ -1,7 +1,5 @@
 package com.habit.tracker.presentation.stateholder
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,6 +14,12 @@ class CreateRequestViewModel @Inject constructor(
 
     private val _requestDraft = MutableLiveData(RequestDraft.empty())
     val requestDraft: LiveData<RequestDraft> = _requestDraft
+
+    private val _isError = MutableLiveData(false)
+    val isError: LiveData<Boolean> = _isError
+
+    private val _isSuccess = MutableLiveData(false)
+    val isSuccess: LiveData<Boolean> = _isSuccess
 
     fun setTitle(value: String) {
         _requestDraft.value = requestDraft.value!!.copy(name = value)
@@ -36,16 +40,14 @@ class CreateRequestViewModel @Inject constructor(
         _requestDraft.value = oldDraft.copy(photos = photos)
     }
 
-    fun createRequest(organizationId: Int, context: Context) {
+    fun createRequest(organizationId: Int) {
         val requestDraft = requestDraft.value!!
         viewModelScope.execute(
             onError = {
-                Toast.makeText(context, "Не удалось отправить заявку :(",
-                    Toast.LENGTH_LONG).show()
+                _isError.value = true
             },
             onSuccess = {
-                Toast.makeText(context, "Заявка успешно создана!",
-                    Toast.LENGTH_LONG).show()
+                _isSuccess.value = true
             }
         ) {
             createRequestUseCase(

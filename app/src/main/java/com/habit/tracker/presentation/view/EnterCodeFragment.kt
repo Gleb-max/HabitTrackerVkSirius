@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -66,6 +67,14 @@ class EnterCodeFragment : Fragment() {
         viewModel.authState.observe(viewLifecycleOwner) {
             if (it == "logged_in") findNavController().navigate(R.id.action_navigation_main)
         }
+        viewModel.isError.observe(viewLifecycleOwner) {
+            if (it) {
+                Toast.makeText(
+                    context, getString(R.string.cant_login),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 
     private fun setupCodeField() {
@@ -104,6 +113,6 @@ class EnterCodeFragment : Fragment() {
                 binding.editTextNumber4.text.toString()
         viewModel.setCode(code)
         binding.indicatorCode.visibility = View.VISIBLE
-        viewModel.login(requireContext())
+        viewModel.login()
     }
 }
