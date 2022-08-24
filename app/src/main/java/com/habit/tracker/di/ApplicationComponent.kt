@@ -36,6 +36,8 @@ interface ApplicationComponent {
 
     fun inject(registrationFragment: RegistrationFragment)
 
+    fun inject(createRequestFragment: CreateRequestFragment)
+
     @Component.Factory
     interface Factory {
 

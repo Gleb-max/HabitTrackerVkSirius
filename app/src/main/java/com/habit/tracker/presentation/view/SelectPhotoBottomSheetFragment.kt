@@ -11,7 +11,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.habit.tracker.databinding.FragmentSelectPhotoBottomSheetBinding
 import java.io.File
@@ -27,15 +26,12 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
     //todo во viewmodel
     private var url = ""
 
-    private val args by navArgs<SelectPhotoBottomSheetFragmentArgs>()
-
     private val getPhotoGallery =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             if (uri != null) {
                 setFragmentResult(
                     REQUEST_KEY, bundleOf(
                         PHOTO_URI_KEY to uri.toString(),
-                        PHOTO_POSITION to args.photoPosition
                     )
                 )
             }
@@ -48,7 +44,6 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
                 setFragmentResult(
                     REQUEST_KEY, bundleOf(
                         PHOTO_URI_KEY to if (ok) url else "",
-                        PHOTO_POSITION to args.photoPosition
                     )
                 )
             }
@@ -117,6 +112,5 @@ class SelectPhotoBottomSheetFragment : BottomSheetDialogFragment() {
 
         const val REQUEST_KEY = "photo_request"
         const val PHOTO_URI_KEY = "photo_uri"
-        const val PHOTO_POSITION = "photo_position"
     }
 }

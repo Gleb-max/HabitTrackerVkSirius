@@ -33,4 +33,9 @@ interface ViewModelModule {
     @IntoMap
     @ViewModelKey(AuthViewModel::class)
     fun bindAuthViewModel(viewModel: AuthViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CreateRequestViewModel::class)
+    fun bindCreateRequestViewModel(viewModel: CreateRequestViewModel): ViewModel
 }

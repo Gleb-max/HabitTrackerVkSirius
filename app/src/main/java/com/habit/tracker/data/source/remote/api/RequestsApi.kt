@@ -1,10 +1,14 @@
 package com.habit.tracker.data.source.remote.api
 
+import com.habit.tracker.data.source.remote.model.request.ReqRequest
 import com.habit.tracker.data.source.remote.model.response.*
-import retrofit2.http.GET
-import retrofit2.http.Path
+import okhttp3.MultipartBody
+import retrofit2.http.*
 
 interface RequestsApi {
+
+    @GET("profile")
+    suspend fun fetchProfile(): ProfileResponse
 
     //todo: add filters or getting by region
     @GET("organizations")
@@ -22,6 +26,10 @@ interface RequestsApi {
         @Path("request_id") requestId: Int
     ): RequestResponse
 
-    @GET("profile")
-    suspend fun fetchProfile(): ProfileResponse
+    @Multipart
+    @POST("create_request")
+    suspend fun createRequest(
+        @Part("info") request: ReqRequest,
+        @Part photos: List<MultipartBody.Part>,
+    )
 }
