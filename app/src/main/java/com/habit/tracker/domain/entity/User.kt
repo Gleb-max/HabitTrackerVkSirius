@@ -2,12 +2,11 @@ package com.habit.tracker.domain.entity
 
 data class User(
     val id: String? = null,
-    val name: String,
-    val phone: String,
+    val token: String? = null,
 ) {
 
     companion object {
 
-        fun emptyUser() = User(null, "", "")
+        fun emptyUser() = User(null, null)
     }
 }

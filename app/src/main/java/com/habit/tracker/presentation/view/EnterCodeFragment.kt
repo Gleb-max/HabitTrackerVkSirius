@@ -2,12 +2,13 @@ package com.habit.tracker.presentation.view
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentEnterCodeBinding
 import com.habit.tracker.presentation.generics.GenericKeyEvent
@@ -45,9 +46,26 @@ class EnterCodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            viewModelFactory
+        )[AuthViewModel::class.java]
+        observeViewModel()
 
         setupCodeField()
+        binding.changeNumber.setOnClickListener {
+            viewModel.clearFields()
+            findNavController().navigate(R.id.action_navigation_enter_code_to_navigation_enter_phone)
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.phone.observe(viewLifecycleOwner) {
+            binding.phoneNumber.text = it
+        }
+        viewModel.authState.observe(viewLifecycleOwner) {
+            if (it == "logged_in") findNavController().navigate(R.id.action_navigation_main)
+        }
     }
 
     private fun setupCodeField() {
@@ -59,7 +77,13 @@ class EnterCodeFragment : Fragment() {
         editTextNumber.addTextChangedListener(GenericTextWatcher(editTextNumber, editTextNumber2))
         editTextNumber2.addTextChangedListener(GenericTextWatcher(editTextNumber2, editTextNumber3))
         editTextNumber3.addTextChangedListener(GenericTextWatcher(editTextNumber3, editTextNumber4))
-        editTextNumber4.addTextChangedListener(GenericTextWatcher(editTextNumber4, null, this::onCodeReady))
+        editTextNumber4.addTextChangedListener(
+            GenericTextWatcher(
+                editTextNumber4,
+                null,
+                this::onCodeReady
+            )
+        )
 
         editTextNumber.setOnKeyListener(GenericKeyEvent(editTextNumber, null))
         editTextNumber2.setOnKeyListener(GenericKeyEvent(editTextNumber2, editTextNumber))
@@ -73,7 +97,12 @@ class EnterCodeFragment : Fragment() {
     }
 
     private fun onCodeReady() {
-        Log.e("frrffrfre", binding.editTextNumber.text.toString() + binding.editTextNumber2.text.toString() + binding.editTextNumber3.text.toString() + binding.editTextNumber4.text.toString())
-
+        //todo красиво собирать код через view model
+        val code = binding.editTextNumber.text.toString() +
+                binding.editTextNumber2.text.toString() +
+                binding.editTextNumber3.text.toString() +
+                binding.editTextNumber4.text.toString()
+        viewModel.setCode(code)
+        viewModel.login()
     }
 }

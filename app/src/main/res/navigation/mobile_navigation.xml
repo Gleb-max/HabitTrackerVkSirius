@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_map">
+    app:startDestination="@+id/navigation_splash">
 
     <action
         android:id="@+id/action_navigation_main"
@@ -30,17 +30,28 @@
         tools:layout="@layout/fragment_enter_phone">
         <action
             android:id="@+id/action_navigation_enter_phone_to_navigation_enter_code"
-            app:destination="@id/navigation_enter_code" />
+            app:destination="@id/navigation_enter_code"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/mobile_navigation" />
         <action
             android:id="@+id/action_navigation_enter_phone_to_navigation_registration"
-            app:destination="@id/navigation_registration" />
+            app:destination="@id/navigation_registration"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/mobile_navigation" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_enter_code"
         android:name="com.habit.tracker.presentation.view.EnterCodeFragment"
         android:label="@string/label_enter_code"
-        tools:layout="@layout/fragment_enter_code" />
+        tools:layout="@layout/fragment_enter_code">
+
+        <action
+            android:id="@+id/action_navigation_enter_code_to_navigation_enter_phone"
+            app:destination="@id/navigation_enter_phone"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/mobile_navigation" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_registration"
@@ -49,10 +60,14 @@
         tools:layout="@layout/fragment_registration">
         <action
             android:id="@+id/action_navigation_registration_to_navigation_enter_code"
-            app:destination="@id/navigation_enter_code" />
+            app:destination="@id/navigation_enter_code"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/mobile_navigation" />
         <action
             android:id="@+id/action_navigation_registration_to_navigation_enter_phone"
-            app:destination="@id/navigation_enter_phone" />
+            app:destination="@id/navigation_enter_phone"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/mobile_navigation" />
     </fragment>
 
     <fragment

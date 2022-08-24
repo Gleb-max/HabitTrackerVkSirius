@@ -29,7 +29,6 @@
         android:layout_marginTop="50dp"
         android:backgroundTint="@color/dark_green"
         android:digits="0123456789+"
-        android:text="89022579888"
         android:hint="@string/phone_number_hint"
         android:inputType="phone"
         android:lines="1"

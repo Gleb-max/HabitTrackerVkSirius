@@ -1,12 +1,11 @@
 package com.habit.tracker.data.repository
 
 import com.habit.tracker.data.source.local.UserPreferences
-import com.habit.tracker.data.source.local.model.AuthResult
-import com.habit.tracker.data.source.local.model.RegResult
 import com.habit.tracker.data.source.remote.api.AuthApi
 import com.habit.tracker.data.source.remote.model.request.AuthRequest
 import com.habit.tracker.data.source.remote.model.request.LoginRequest
 import com.habit.tracker.data.source.remote.model.request.RegRequest
+import com.habit.tracker.domain.entity.User
 import javax.inject.Inject
 
 class AuthRepository @Inject constructor(
@@ -14,7 +13,7 @@ class AuthRepository @Inject constructor(
     private val localDataSource: UserPreferences,
 ) {
 
-    fun isLoggedIn() = localDataSource.getUser().id != null
+    fun isLoggedIn() = localDataSource.getUser().token != null
 
     suspend fun auth(phone: String): String {
         return remoteDataSource.auth(AuthRequest(phone)).result
@@ -25,6 +24,11 @@ class AuthRepository @Inject constructor(
     }
 
     suspend fun login(phone: String, code: String): String? {
-        return remoteDataSource.login(LoginRequest(phone, code)).token
+        val token = remoteDataSource.login(LoginRequest(phone, code)).token
+        if (token != null) {
+            val user = User(token = token)
+            localDataSource.saveUser(user)
+        }
+        return token
     }
 }

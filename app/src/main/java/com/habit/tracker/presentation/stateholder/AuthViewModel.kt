@@ -51,8 +51,7 @@ class AuthViewModel @Inject constructor(
     }
 
     fun clearFields() {
-        _phone.value = ""
-        _name.value = ""
+        _authState.value = ""
     }
 
     fun auth() {
@@ -74,7 +73,8 @@ class AuthViewModel @Inject constructor(
         viewModelScope.execute {
             val phone = phone.value
             val code = code.value
-            _authState.value = repository.login(phone!!, code!!)
+            val token = repository.login(phone!!, code!!)
+            if (token != null) _authState.value = "logged_in"
         }
     }
 }

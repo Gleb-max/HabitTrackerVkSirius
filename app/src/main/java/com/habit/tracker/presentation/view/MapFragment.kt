@@ -95,7 +95,8 @@ class MapFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[MapViewModel::class.java]
-        startLocationPermissionRequest()
+
+        if (savedInstanceState == null) startLocationPermissionRequest()
 
         binding.tilSearch.setEndIconOnClickListener {
             val filterDialog = BottomSheetDialog(requireContext())
@@ -132,8 +133,7 @@ class MapFragment : Fragment() {
                     .build()
             )
             getMapboxMap().loadStyleUri(
-//                Style.OUTDOORS
-                "mapbox://styles/gleb-max/cl5m6rbl6004l14o82i8q872n"
+                getString(R.string.map_style)
             ) {
                 initLocationComponent()
                 setupGesturesListener()

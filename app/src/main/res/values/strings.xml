@@ -56,4 +56,6 @@
     <string name="confirmation_code">Код подтверждения</string>
     <string name="resend_code">Получить новый код через</string>
     <string name="invalid_code">Неверный код!</string>
+
+    <string name="map_style">mapbox://styles/gleb-max/cl5m6rbl6004l14o82i8q872n</string>
 </resources>
