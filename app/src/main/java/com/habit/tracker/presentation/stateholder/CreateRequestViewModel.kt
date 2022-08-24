@@ -34,10 +34,15 @@ class CreateRequestViewModel @Inject constructor(
         _requestDraft.value = oldDraft.copy(photos = photos)
     }
 
-    fun createRequest() {
+    fun createRequest(organizationId: Int) {
         val requestDraft = requestDraft.value!!
         viewModelScope.execute {
-            createRequestUseCase(requestDraft.name, requestDraft.description, requestDraft.photos)
+            createRequestUseCase(
+                organizationId,
+                requestDraft.name,
+                requestDraft.description,
+                requestDraft.photos
+            )
         }
     }
 }

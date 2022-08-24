@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.habit.tracker.R
@@ -31,6 +32,8 @@ class CreateRequestFragment : Fragment() {
     private val component by lazy {
         (requireActivity().application as TrackerApp).component
     }
+
+    private val args by navArgs<CreateRequestFragmentArgs>()
 
     override fun onAttach(context: Context) {
         component.inject(this)
@@ -69,14 +72,14 @@ class CreateRequestFragment : Fragment() {
                 text?.let { viewModel.setDescription(it.toString()) }
             }
             btnCreate.setOnClickListener {
-                viewModel.createRequest()
+                viewModel.createRequest(args.organizationId)
             }
         }
         setupPhotoCards()
     }
 
     private fun setupOnResultListener() {
-        setFragmentResultListener(SelectPhotoBottomSheetFragment.REQUEST_KEY) { requestKey, bundle ->
+        setFragmentResultListener(SelectPhotoBottomSheetFragment.REQUEST_KEY) { _, bundle ->
             val photoUri = bundle.getString(SelectPhotoBottomSheetFragment.PHOTO_URI_KEY, "")
             if (photoUri.isNotBlank()) {
                 viewModel.addPhoto(photoUri)

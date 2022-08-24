@@ -68,7 +68,7 @@ class OrganizationFragment : Fragment() {
         shimmerOrganization.startShimmer()
 
         binding.fabAddRequest.setOnClickListener {
-            onRequestListActionsListener.onAddNewClick()
+            onRequestListActionsListener.onAddNewClick(args.organizationId)
         }
 
         binding.btnRetry.setOnClickListener {
@@ -130,6 +130,6 @@ class OrganizationFragment : Fragment() {
 
         fun onRequestItemClick(organizationId: Int, request: Request)
 
-        fun onAddNewClick()
+        fun onAddNewClick(organizationId: Int)
     }
 }

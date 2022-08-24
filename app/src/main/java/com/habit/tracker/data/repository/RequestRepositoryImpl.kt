@@ -15,6 +15,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+import java.io.FileOutputStream
 import javax.inject.Inject
 
 class RequestRepositoryImpl @Inject constructor(
@@ -51,18 +52,23 @@ class RequestRepositoryImpl @Inject constructor(
     }
 
     override suspend fun createRequest(
+        organizationId: Int,
         title: String,
         description: String,
         photos: List<String>
     ) {
-        //todo: fix request
         val files = photos.map {
-            val body = File(it)
-                .asRequestBody(
+            context.contentResolver.openInputStream(it.toUri()).use { input ->
+                val file = File(context.filesDir, it.toUri().lastPathSegment.toString())
+                FileOutputStream(file).use { output ->
+                    input?.copyTo(output)
+                }
+                val body = file.asRequestBody(
                     context.contentResolver.getType(it.toUri())!!.toMediaType()
                 )
-            MultipartBody.Part.create(body)
+                MultipartBody.Part.createFormData("photo", "photo-$it", body)
+            }
         }
-        remoteDataSource.createRequest(ReqRequest(title, description), files)
+        remoteDataSource.createRequest(ReqRequest(organizationId, title, description), files)
     }
 }

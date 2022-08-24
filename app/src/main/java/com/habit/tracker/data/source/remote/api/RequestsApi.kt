@@ -30,6 +30,6 @@ interface RequestsApi {
     @POST("create_request")
     suspend fun createRequest(
         @Part("info") request: ReqRequest,
-        @Part photos: List<MultipartBody.Part>,
+        @Part photo: List<MultipartBody.Part>,
     )
 }

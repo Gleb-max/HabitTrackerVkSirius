@@ -14,7 +14,12 @@ interface RequestRepository {
 
     suspend fun getOrganizationRequestById(organizationId: Int, requestId: Int): Request
 
-    suspend fun createRequest(title: String, description: String, photos: List<String>)
+    suspend fun createRequest(
+        organizationId: Int,
+        title: String,
+        description: String,
+        photos: List<String>
+    )
 
     suspend fun fetchProfile(): Profile
 }

@@ -107,7 +107,9 @@
         android:name="com.habit.tracker.presentation.view.CreateRequestFragment"
         android:label="@string/label_create_request"
         tools:layout="@layout/fragment_create_request">
-
+        <argument
+            android:name="organizationId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_navigation_create_request_to_navigation_select_photo"
             app:destination="@id/navigation_select_photo" />
