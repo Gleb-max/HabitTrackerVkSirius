@@ -12,8 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.facebook.shimmer.ShimmerFrameLayout
-import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentRequestDetailsBinding
 import com.habit.tracker.presentation.stateholder.RequestDetailsViewModel
@@ -70,21 +71,8 @@ class RequestDetailsFragment : Fragment() {
 
         val like = binding.toggleLike
         val dislike = binding.toggleDislike
-        val carousel = binding.carouselView
         val share = binding.share
         val btnBack = binding.btnBack
-
-        // todo: подставить картинки с бэка
-        val sampleImages = intArrayOf(
-            R.drawable.maxresdefault,
-            R.drawable.maxresdefault,
-            R.drawable.maxresdefault,
-        )
-
-        carousel.setImageListener { position, imageView ->
-            imageView.setImageResource(sampleImages[position])
-        }
-        carousel.pageCount = sampleImages.size
 
         observeViewModel()
         viewModel.loadRequestDetailData(args.organizationId, args.requestId)
@@ -108,7 +96,7 @@ class RequestDetailsFragment : Fragment() {
 
             intent.putExtra(
                 Intent.EXTRA_TEXT,
-                        "Тема заявки: ${binding.requestName.text}\n" +
+                "Тема заявки: ${binding.requestName.text}\n" +
                         "Адрес организации: ${binding.address.text}\n" +
                         "Подробности: ${binding.description.text}"
             )
@@ -130,6 +118,15 @@ class RequestDetailsFragment : Fragment() {
             if (it != null) {
                 binding.requestName.text = it.title
                 binding.description.text = it.description
+
+                val photos = it.photos
+
+                binding.carouselView.setImageListener { position, imageView ->
+                    Glide.with(imageView.context).load(photos[position])
+                        .transition(DrawableTransitionOptions.withCrossFade()).centerCrop()
+                        .into(imageView)
+                }
+                binding.carouselView.pageCount = photos.size
             }
         }
 
