@@ -88,6 +88,7 @@ class AuthViewModel @Inject constructor(
             val code = code.value
             val token = repository.login(phone!!, code!!)
             if (token != null) _authState.postValue("logged_in")
+            else _isError.postValue(true)
         }
     }
 }
