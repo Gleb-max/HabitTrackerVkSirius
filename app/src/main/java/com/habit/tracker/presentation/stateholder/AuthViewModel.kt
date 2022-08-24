@@ -7,7 +7,6 @@ import com.habit.tracker.core.BaseViewModel
 import com.habit.tracker.data.repository.AuthRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthViewModel @Inject constructor(
@@ -32,9 +31,7 @@ class AuthViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.IO) {
             val result = repository.isLoggedIn()
-            withContext(Dispatchers.Main) {
-                _isLoggedIn.value = result
-            }
+            _isLoggedIn.postValue(result)
         }
     }
 
@@ -57,7 +54,7 @@ class AuthViewModel @Inject constructor(
     fun auth() {
         viewModelScope.execute {
             val phone = phone.value
-            _authState.value = repository.auth(phone!!)
+            _authState.postValue(repository.auth(phone!!))
         }
     }
 
@@ -65,7 +62,7 @@ class AuthViewModel @Inject constructor(
         viewModelScope.execute {
             val phone = phone.value
             val name = name.value
-            _authState.value = repository.reg(phone!!, name!!)
+            _authState.postValue(repository.reg(phone!!, name!!))
         }
     }
 
@@ -74,7 +71,7 @@ class AuthViewModel @Inject constructor(
             val phone = phone.value
             val code = code.value
             val token = repository.login(phone!!, code!!)
-            if (token != null) _authState.value = "logged_in"
+            if (token != null) _authState.postValue("logged_in")
         }
     }
 }

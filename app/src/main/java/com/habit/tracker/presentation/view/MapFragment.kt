@@ -96,7 +96,7 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this, viewModelFactory)[MapViewModel::class.java]
 
-        if (savedInstanceState == null) startLocationPermissionRequest()
+        startLocationPermissionRequest()
 
         binding.tilSearch.setEndIconOnClickListener {
             val filterDialog = BottomSheetDialog(requireContext())

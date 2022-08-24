@@ -1,7 +1,7 @@
 package com.habit.tracker.data.source.local
 
 import android.app.Application
-import android.content.Context
+import androidx.security.crypto.EncryptedSharedPreferences
 import com.google.gson.Gson
 import com.habit.tracker.di.ApplicationScope
 import com.habit.tracker.domain.entity.User
@@ -9,7 +9,14 @@ import javax.inject.Inject
 
 @ApplicationScope
 class UserPreferences @Inject constructor(context: Application) {
-    private val prefs = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
+
+    private val prefs = EncryptedSharedPreferences.create(
+        PREF_NAME,
+        KEY_USER,
+        context,
+        EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+        EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+    )
     private val gson = Gson()
 
     fun getUser(): User = try {
