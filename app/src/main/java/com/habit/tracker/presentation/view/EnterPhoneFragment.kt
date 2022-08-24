@@ -1,6 +1,7 @@
 package com.habit.tracker.presentation.view
 
 import android.content.Context
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.button.MaterialButton
 import com.habit.tracker.R
 import com.habit.tracker.TrackerApp
 import com.habit.tracker.databinding.FragmentEnterPhoneBinding
@@ -25,6 +27,7 @@ class EnterPhoneFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
     private lateinit var viewModel: AuthViewModel
+    private lateinit var codeButton : MaterialButton
     private val component by lazy {
         (requireActivity().application as TrackerApp).component
     }
@@ -47,20 +50,25 @@ class EnterPhoneFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val progressBar = binding.progressIndicatorEnterPhone
+        codeButton = binding.getCodeButton
+
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[AuthViewModel::class.java]
         observeViewModel()
 
         binding.phoneEditText.doOnTextChanged { text, _, _, _ ->
             viewModel.setPhone(text.toString())
         }
-        binding.getCodeButton.setOnClickListener {
+        codeButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
+            codeButton.isEnabled = false
             viewModel.auth()
         }
     }
 
     private fun observeViewModel() {
         viewModel.phone.observe(viewLifecycleOwner) {
-            binding.getCodeButton.isEnabled = it.matches(phoneRegex)
+            codeButton.isEnabled = it.matches(phoneRegex)
         }
 
         viewModel.authState.observe(viewLifecycleOwner) {

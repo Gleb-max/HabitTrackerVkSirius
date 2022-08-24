@@ -1,31 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:backgroundTint="@color/bnv_tab_item_foreground"
-    android:orientation="vertical"
-    android:paddingHorizontal="24dp"
-    android:paddingVertical="90dp"
     android:weightSum="2"
     tools:context=".presentation.view.RegistrationFragment">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_indicator_enter_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/register_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="24dp"
         android:text="@string/label_registration"
         android:textAlignment="textStart"
         android:textColor="@color/dark_blue"
         android:textSize="40sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/flat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_title">
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_phone"
@@ -36,7 +56,7 @@
             android:textAllCaps="true"
             android:textColor="@color/gray"
             android:textSize="16sp"
-            tools:text="с номером + 7 912 3456789" />
+            tools:text="с номером: + 7 912 3456789"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_change_number"
@@ -57,7 +77,9 @@
         android:id="@+id/full_name_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/dark_green"
         android:hint="@string/name_hint"
         android:inputType="textCapWords"
@@ -65,19 +87,26 @@
         android:textAllCaps="true"
         android:textColorHighlight="@color/dark_green"
         android:textColorHint="@color/gray"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flat" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/auth_button_shape"
         android:clickable="false"
         android:text="@string/register"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:cornerRadius="13dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/full_name_edit_text"
         app:shapeAppearance="@drawable/auth_button_shape" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

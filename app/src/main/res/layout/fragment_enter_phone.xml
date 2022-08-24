@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingHorizontal="24dp"
-    android:paddingVertical="90dp"
     android:weightSum="2"
     tools:context=".presentation.view.EnterPhoneFragment">
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress_indicator_enter_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateOnly="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/enter_phone_title_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="24dp"
         android:text="@string/title_enter_phone"
         android:textAlignment="textStart"
         android:textColor="@color/dark_blue"
@@ -26,7 +37,9 @@
         android:id="@+id/phone_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="@color/dark_green"
         android:digits="0123456789+"
         android:hint="@string/phone_number_hint"
@@ -44,7 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="9dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="13dp"
         android:background="@drawable/auth_button_shape"
         android:enabled="false"
@@ -57,4 +72,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phone_edit_text"
         app:shapeAppearance="@drawable/auth_button_shape" />
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
