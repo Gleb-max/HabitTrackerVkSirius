@@ -33,6 +33,7 @@ class OrganizationViewModel @Inject constructor(
                 _shimmerCloseNeeded.value = true
             },
             onError = {
+                _shimmerCloseNeeded.value = true
                 _isError.value = true
             }
         ) {

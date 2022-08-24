@@ -1,5 +1,7 @@
 package com.habit.tracker.presentation.stateholder
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -51,23 +53,38 @@ class AuthViewModel @Inject constructor(
         _authState.value = ""
     }
 
-    fun auth() {
-        viewModelScope.execute {
+    fun auth(context: Context) {
+        viewModelScope.execute(
+            onError = {
+                Toast.makeText(context, "Не удалось войти :(",
+                    Toast.LENGTH_LONG).show()
+            }
+        ) {
             val phone = phone.value
             _authState.postValue(repository.auth(phone!!))
         }
     }
 
-    fun reg() {
-        viewModelScope.execute {
+    fun reg(context: Context) {
+        viewModelScope.execute(
+            onError = {
+                Toast.makeText(context, "Не удалось создать аккаунт :(",
+                    Toast.LENGTH_LONG).show()
+            }
+        ) {
             val phone = phone.value
             val name = name.value
             _authState.postValue(repository.reg(phone!!, name!!))
         }
     }
 
-    fun login() {
-        viewModelScope.execute {
+    fun login(context: Context) {
+        viewModelScope.execute(
+            onError = {
+                Toast.makeText(context, "Не удалось создать аккаунт :(",
+                    Toast.LENGTH_LONG).show()
+            }
+        ) {
             val phone = phone.value
             val code = code.value
             val token = repository.login(phone!!, code!!)

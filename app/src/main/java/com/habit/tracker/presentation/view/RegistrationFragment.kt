@@ -66,7 +66,7 @@ class RegistrationFragment : Fragment() {
         nameButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             nameButton.isEnabled = false
-            viewModel.reg()
+            viewModel.reg(requireContext())
         }
     }
 

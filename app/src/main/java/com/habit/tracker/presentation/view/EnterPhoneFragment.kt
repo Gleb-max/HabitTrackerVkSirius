@@ -62,7 +62,7 @@ class EnterPhoneFragment : Fragment() {
         codeButton.setOnClickListener {
             progressBar.visibility = View.VISIBLE
             codeButton.isEnabled = false
-            viewModel.auth()
+            viewModel.auth(requireContext())
         }
     }
 
